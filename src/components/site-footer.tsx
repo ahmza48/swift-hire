@@ -108,8 +108,22 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-6 border-t border-ink-line pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-xs text-on-ink-muted">
-            © {year} {siteConfig.legalName}. All rights reserved.
+          <p className="flex flex-wrap items-center gap-x-2 font-mono text-xs text-on-ink-muted">
+            <span>© {year} {siteConfig.legalName}. All rights reserved.</span>
+            <span aria-hidden="true">·</span>
+            <span>
+              Powered by{" "}
+              <a
+                href={siteConfig.poweredBy.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-analytics="outbound_click"
+                className="rounded-xs text-on-ink-muted underline underline-offset-2 transition-colors hover:text-jade"
+              >
+                {siteConfig.poweredBy.name}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </span>
           </p>
 
           <div className="flex items-center gap-5">

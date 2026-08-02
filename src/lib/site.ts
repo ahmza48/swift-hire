@@ -30,6 +30,11 @@ export const siteConfig = {
   calendly: "https://calendly.com/swifthire/discovery-call",
   responseCommitment: "We reply to every enquiry within one business day.",
   guaranteeDays: 90,
+  /** Footer credit — the agency that built this site, not Swift Hire itself. */
+  poweredBy: {
+    name: "Axenity",
+    url: "https://www.axenity.com/",
+  },
 } as const;
 
 export type NavItem = {
