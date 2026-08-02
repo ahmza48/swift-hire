@@ -1,0 +1,350 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Palette: deep navy as the dominant surface, warm paper as the counter-band,
+   one accent — signal jade — reserved for action, focus and "passed" states.
+   Two jades exist because the bright one cannot meet 4.5:1 on paper.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* Surfaces */
+  --color-ink: #0b1524;
+  --color-ink-raised: #142438;
+  --color-ink-line: #22344f;
+  --color-paper: #f3f0e9;
+  --color-paper-raised: #ffffff;
+  --color-paper-sunken: #e8e3d8;
+
+  /* Text */
+  --color-on-ink: #f3f0e9;
+  --color-on-ink-muted: #96a3b5;
+  --color-on-paper: #0b1524;
+  --color-on-paper-muted: #5c5f5a;
+
+  /* Accent */
+  --color-jade: #00c88b;
+  --color-jade-strong: #00a472;
+  --color-jade-ink: #006b4a;
+
+  /* Status */
+  --color-danger: #c02a3f;
+  --color-danger-on-ink: #ff7a8a;
+
+  /* Typography */
+  --font-display: var(--font-archivo), "Archivo", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-sans: var(--font-public-sans), "Public Sans", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace,
+    "SFMono-Regular", monospace;
+
+  /* Type scale — fluid, clamped so 375px and 1440px both read well.
+     Deliberately wide-ranging: the old scale topped out at 6rem display /
+     3rem h2, which left every section heading roughly the same size as every
+     other and gave the page no hierarchy to read by. */
+  --text-eyebrow: 0.75rem;
+  --text-display: clamp(3rem, 1.2rem + 7.4vw, 8.5rem);
+  --text-h1: clamp(2.5rem, 1.4rem + 4.6vw, 5.5rem);
+  --text-h2: clamp(2rem, 1.2rem + 3.2vw, 4rem);
+  --text-h3: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  --text-lead: clamp(1.0625rem, 1rem + 0.45vw, 1.375rem);
+
+  /* Geometry */
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+
+@layer base {
+  * {
+    border-color: color-mix(in oklab, currentColor 14%, transparent);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header height + breathing room for in-page anchors. */
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-on-paper);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  /* Archivo is a variable font with a real width axis. Large display type is
+     set slightly condensed and tighter-tracked so it reads as one dense mass
+     rather than a wide, airy line — the whole reason this face was chosen
+     over a static one. */
+  h1,
+  .display-tight {
+    font-stretch: 92%;
+    letter-spacing: -0.04em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* One consistent, high-contrast focus ring everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--color-jade-strong);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  .on-ink :focus-visible,
+  .on-ink:focus-visible {
+    outline-color: var(--color-jade);
+  }
+
+  ::selection {
+    background-color: var(--color-jade);
+    color: var(--color-ink);
+  }
+
+  /* Only hide the ring for mouse users, never for keyboard users. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 78rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 768px) {
+    padding-inline: 2rem;
+  }
+
+  @media (width >= 1280px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Monospace label that opens most sections. The tick is structural: it marks
+   a section boundary in a document that is otherwise deliberately quiet. */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Subtle film grain so large flat fields have surface rather than flatness.
+   The noise is an unfilled (black) SVG turbulence pattern at ~1.7% effective
+   opacity, which reads as texture on both the navy and paper surfaces — no
+   separate light/dark variant needed. */
+@utility grain {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+}
+
+/* Soft directional light wash, one per tone. Kept under 5% opacity so it never
+   touches text-contrast ratios — this is surface, not colour. */
+@utility surface-wash-paper {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(
+        60rem 32rem at 88% -8%,
+        color-mix(in oklab, var(--color-jade) 5%, transparent),
+        transparent 60%
+      ),
+      radial-gradient(
+        40rem 26rem at 6% 108%,
+        color-mix(in oklab, var(--color-jade-ink) 4%, transparent),
+        transparent 65%
+      );
+  }
+}
+
+@utility surface-wash-ink {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(
+      54rem 30rem at 82% -12%,
+      color-mix(in oklab, var(--color-jade) 10%, transparent),
+      transparent 62%
+    );
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Interaction polish
+
+   Hover states are CSS transitions, not JS animations — they need to respond
+   within a frame of the pointer arriving, and running them through a JS
+   animation loop makes them feel heavier, not smoother.
+--------------------------------------------------------------------------- */
+
+/* Primary CTA: lift, warm the colour, and cast a soft accent glow. */
+@utility cta-lift {
+  transition:
+    transform 0.3s var(--ease-out-quart),
+    background-color 0.3s var(--ease-out-quart),
+    box-shadow 0.3s var(--ease-out-quart);
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 28px -10px color-mix(in oklab, var(--color-jade) 65%, transparent);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Marquee
+
+   A continuously scrolling track. The content is duplicated in the markup and
+   the track translates exactly -50%, so the loop is seamless. Pauses on hover
+   so a reader can actually catch an item, and stops entirely under reduced
+   motion (handled in the block below).
+--------------------------------------------------------------------------- */
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration, 42s) linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Fades the leading and trailing edges of a marquee so items enter and leave
+   rather than being abruptly clipped by the container edge. */
+@utility marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6rem,
+    #000 calc(100% - 6rem),
+    transparent
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion
+
+   Framer Motion writes `opacity: 0` inline before an element animates in. The
+   `!important` here outranks that inline style, so a reduced-motion visitor
+   sees every `[data-motion]` element on the very first paint — including during
+   the one tick before `usePrefersReducedMotion` reports the real value, and
+   even if the JS bundle never executes at all.
+--------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-motion] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /*
+   * The blanket rule below collapses animations to 0.01ms, which for a looping
+   * marquee means it lands instantly on its end frame (translateX(-50%)) and
+   * parks there showing the duplicated half. Cancel the animation outright and
+   * let the track sit at its natural start position instead.
+   */
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Print — legal pages get read on paper more than anything else here.
+--------------------------------------------------------------------------- */
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  [data-print-hide] {
+    display: none !important;
+  }
+}
