@@ -24,6 +24,10 @@ export function getDuplicateKeyMessage(error: unknown): string | null {
     return "A record with this LinkedIn URL already exists.";
   }
 
+  if (field === "companyName" || message.includes("companyName")) {
+    return "A company with this name has already been added.";
+  }
+
   if (field === "email") {
     return "A user with this email already exists.";
   }
