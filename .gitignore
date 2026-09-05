@@ -43,3 +43,13 @@ yarn-error.log*
 
 # uploads written during local dev
 /tmp-uploads/
+
+# admin-panel: node_modules are per-workspace, and the SPA build output
+# lands in public/admin — both are build artefacts, not source.
+admin-panel/node_modules/
+public/admin/
+
+# Leftover from an earlier abandoned dashboard-migration attempt. Superseded
+# by admin-panel/. Kept on disk (not deleted) but ignored so it doesn't clutter
+# git status; delete manually once verified nothing else references it.
+/dashboard/

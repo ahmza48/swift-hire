@@ -1,0 +1,24 @@
+{
+  "name": "swift-hire-admin-panel",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Admin panel SPA (Vite/React) that ships into the Next.js host under /admin",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^7.10.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@vitejs/plugin-react": "^5.1.2",
+    "tailwindcss": "^4.1.18",
+    "vite": "^8.2.2"
+  }
+}

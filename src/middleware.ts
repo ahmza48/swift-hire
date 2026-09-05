@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
- * Builds a nonce-based Content-Security-Policy.
+ * Builds a nonce-based Content-Security-Policy for the public marketing site.
  *
  * Next.js reads this header off the incoming request and stamps the same nonce
  * onto every script tag it renders, so no `'unsafe-inline'` is needed for
@@ -59,8 +59,59 @@ function buildCsp(nonce: string, isDev: boolean): string {
     : `${serialised}; upgrade-insecure-requests`;
 }
 
+/**
+ * Relaxed CSP for the admin panel SPA (Vite build served from /public/admin).
+ *
+ * The Vite build emits static <script> tags into index.html with no nonce, and
+ * we cannot post-process them, so the strict-dynamic + nonce scheme used by
+ * the marketing site would block every script and leave the panel dead. This
+ * CSP still restricts network origins and blocks framing, but allows
+ * self-hosted scripts (the Vite bundle) and inline styles (Tailwind/Vite
+ * inject one at runtime). No third-party CDN is loaded by the panel.
+ */
+function buildAdminCsp(isDev: boolean): string {
+  const directives: Record<string, string[]> = {
+    "default-src": ["'self'"],
+    "script-src": [
+      "'self'",
+      // React Refresh + Vite HMR compile in the browser during dev.
+      ...(isDev ? ["'unsafe-inline'", "'unsafe-eval'"] : []),
+    ],
+    "style-src": ["'self'", "'unsafe-inline'"],
+    "img-src": ["'self'", "blob:", "data:"],
+    "font-src": ["'self'", "data:"],
+    "connect-src": ["'self'", ...(isDev ? ["ws:", "wss:"] : [])],
+    "form-action": ["'self'"],
+    "frame-ancestors": ["'none'"],
+    "base-uri": ["'self'"],
+    "object-src": ["'none'"],
+    "worker-src": ["'self'", "blob:"],
+    "manifest-src": ["'self'"],
+  };
+
+  const serialised = Object.entries(directives)
+    .map(([key, values]) => `${key} ${values.join(" ")}`)
+    .join("; ");
+
+  return isDev ? serialised : `${serialised}; upgrade-insecure-requests`;
+}
+
 export function middleware(request: NextRequest) {
   const isDev = process.env.NODE_ENV === "development";
+  const { pathname } = request.nextUrl;
+
+  // Admin panel + its API subtree get the relaxed CSP. No per-request nonce is
+  // used because the Vite bundle's <script> tags are baked in at build time.
+  const isAdminPath =
+    pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
+
+  if (isAdminPath) {
+    const csp = buildAdminCsp(isDev);
+    const response = NextResponse.next();
+    response.headers.set("content-security-policy", csp);
+    return response;
+  }
+
   const nonce = crypto.randomUUID().replace(/-/g, "");
   const csp = buildCsp(nonce, isDev);
 

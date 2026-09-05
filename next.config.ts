@@ -86,6 +86,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  /**
+   * The admin panel is a Vite/React SPA built into /public/admin.
+   *
+   * These rewrites run in the `afterFiles` phase, so real files in
+   * /public/admin (index.html, hashed assets, favicon) are served directly
+   * first. Only requests that don't match a file — deep client-side routes
+   * like /admin/companies — fall through to /admin/index.html, letting
+   * React Router pick up navigation from there.
+   */
+  async rewrites() {
+    return [
+      { source: "/admin", destination: "/admin/index.html" },
+      { source: "/admin/:path*", destination: "/admin/index.html" },
+    ];
+  },
 };
 
 export default nextConfig;

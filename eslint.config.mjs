@@ -11,7 +11,15 @@ const compat = new FlatCompat({ baseDirectory: __dirname });
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
-    ignores: [".next/**", "node_modules/**", "next-env.d.ts"],
+    ignores: [
+      ".next/**",
+      "node_modules/**",
+      "next-env.d.ts",
+      // Vite-built admin SPA bundle (public/admin) and its source tree
+      // (admin-panel) live outside the Next.js typechecking + linting scope.
+      "public/admin/**",
+      "admin-panel/**",
+    ],
   },
   {
     rules: {
