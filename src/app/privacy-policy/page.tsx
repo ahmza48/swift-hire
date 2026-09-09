@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Privacy policy",
   description:
-    "How Swift Hire collects, uses, stores and deletes personal data for client companies and engineering candidates, including your rights under the UK GDPR and CCPA.",
+    "How Staffing Viro collects, uses, stores and deletes personal data for client companies and engineering candidates, including your rights under the UK GDPR and CCPA.",
   alternates: { canonical: "/privacy-policy" },
 };
 

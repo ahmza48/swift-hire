@@ -82,8 +82,8 @@ export function renderRows(
     .map(
       ([label, value]) =>
         `<tr>
-          <td style="padding:10px 16px 10px 0;vertical-align:top;color:#5c5f5a;font:500 12px/1.5 ui-monospace,monospace;text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap">${escapeHtml(label)}</td>
-          <td style="padding:10px 0;vertical-align:top;color:#0b1524;font:400 15px/1.6 ui-sans-serif,system-ui,sans-serif">${escapeHtml(value).replace(/\n/g, "<br>")}</td>
+          <td style="padding:10px 16px 10px 0;vertical-align:top;color:#6b6660;font:500 12px/1.5 ui-monospace,monospace;text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap">${escapeHtml(label)}</td>
+          <td style="padding:10px 0;vertical-align:top;color:#14171a;font:400 15px/1.6 ui-sans-serif,system-ui,sans-serif">${escapeHtml(value).replace(/\n/g, "<br>")}</td>
         </tr>`,
     )
     .join("");
@@ -96,11 +96,11 @@ export function renderEmailShell(title: string, body: string): string {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
 <title>${escapeHtml(title)}</title></head>
-<body style="margin:0;padding:24px;background:#f3f0e9">
+<body style="margin:0;padding:24px;background:#faf7f0">
   <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e2ded4;border-radius:8px;overflow:hidden">
-    <div style="background:#0b1524;padding:20px 28px">
-      <p style="margin:0;color:#00c88b;font:500 11px/1.4 ui-monospace,monospace;letter-spacing:0.14em;text-transform:uppercase">Swift Hire</p>
-      <h1 style="margin:8px 0 0;color:#f3f0e9;font:700 20px/1.3 ui-sans-serif,system-ui,sans-serif">${escapeHtml(title)}</h1>
+    <div style="background:#14171a;padding:20px 28px">
+      <p style="margin:0;color:#c69d5e;font:500 11px/1.4 ui-monospace,monospace;letter-spacing:0.14em;text-transform:uppercase">Staffing Viro</p>
+      <h1 style="margin:8px 0 0;color:#f5f0e6;font:600 20px/1.3 Georgia,serif">${escapeHtml(title)}</h1>
     </div>
     <div style="padding:28px">${body}</div>
   </div>

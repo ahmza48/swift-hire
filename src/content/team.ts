@@ -13,7 +13,7 @@ export const team: readonly TeamMember[] = [
   {
     name: "Founder name",
     role: "Co-founder, Client Partnerships",
-    bio: "Twelve years in technical recruitment, the last six leading engineering hiring at a Series C platform business. Started Swift Hire after watching a fourth client be sent the same recycled shortlist by three different agencies.",
+    bio: "Twelve years in technical recruitment, the last six leading engineering hiring at a Series C platform business. Started Staffing Viro after watching a fourth client be sent the same recycled shortlist by three different agencies.",
     linkedin: "https://www.linkedin.com/company/swifthire",
   },
   {

@@ -58,7 +58,7 @@ export function CalendlyEmbed() {
     <div className="overflow-hidden rounded-md border border-on-paper/15 bg-paper-raised">
       <iframe
         src={CALENDLY_URL}
-        title="Book a discovery call with Swift Hire"
+        title="Book a discovery call with Staffing Viro"
         loading="lazy"
         // The frame is third-party: give it nothing beyond what scheduling needs.
         sandbox="allow-scripts allow-same-origin allow-forms allow-popups"

@@ -11,7 +11,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why Swift Hire exists, how we operate, and who runs it. An outsourced business services partner based in London, serving the UK, EU and Gulf markets.",
+    "Why Staffing Viro exists, how we operate, and who runs it. An outsourced business services partner based in London, serving the UK, EU and Gulf markets.",
   alternates: { canonical: "/about" },
 };
 
@@ -59,7 +59,7 @@ export default function AboutPage() {
               starts again. We have been on both sides of that loop.
             </p>
             <p className="text-on-paper-muted">
-              Swift Hire exists to close it. We act as the hiring arm of the client
+              Staffing Viro exists to close it. We act as the hiring arm of the client
               — we source, we screen, we run the technical assessment, and we
               hand over four candidates with written evidence. The company still
               makes the decision and the offer. That boundary is deliberate: the

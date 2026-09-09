@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Terms of service",
   description:
-    "The terms governing Swift Hire's engineering recruitment services: scope, fees, payment terms, the replacement guarantee, confidentiality and limitation of liability.",
+    "The terms governing Staffing Viro's engineering recruitment services: scope, fees, payment terms, the replacement guarantee, confidentiality and limitation of liability.",
   alternates: { canonical: "/terms-of-service" },
 };
 

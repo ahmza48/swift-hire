@@ -1,7 +1,7 @@
 # Agency Site — Product Requirements Document
 **Project:** Engineering Recruitment Intermediary Agency Website  
 **Version:** 1.0  
-**Prepared for:** Swift Hire / Internal Use  
+**Prepared for:** Staffing Viro / Internal Use  
 **Last Updated:** August 2026
 
 ---
@@ -482,7 +482,7 @@ implementation and need founder sign-off — each is a single-file change.
 
 | # | Question | Owner | Status | Decision |
 |---|---|---|---|---|
-| 1 | What is the agency name and brand? | Founder | **Assumed** | **Swift Hire** (from this document's header). Legal entity rendered as *Swift Hire Solutions Ltd.* Change in `src/lib/site.ts` |
+| 1 | What is the agency name and brand? | Founder | **Assumed** | **Staffing Viro** (from this document's header). Legal entity rendered as *Staffing Viro Solutions Ltd.* Change in `src/lib/site.ts` |
 | 2 | Which geographies does the agency serve? | Founder | **Assumed** | London HQ; UK, EU and Gulf markets, remote-first placements worldwide. `src/lib/site.ts` |
 | 3 | Are service prices public or "on request"? | Founder | **Resolved** | "On request" on all three tiers, with the fee *basis* stated (% of first-year salary / retainer / monthly). Structure is public, numbers are not |
 | 4 | Replacement guarantee window — how many days? | Founder | **Assumed** | **90 days**, used consistently across services, process and terms. Single constant: `siteConfig.guaranteeDays` |
@@ -510,7 +510,7 @@ implementation and need founder sign-off — each is a single-file change.
 The brief was extended after the v1 build. Two changes, both implemented:
 
 **Positioning widened from recruitment-only to ten business services.** The
-agency is now `Swift Hire`, an outsourced business services partner. Recruitment
+agency is now `Staffing Viro`, an outsourced business services partner. Recruitment
 & Staffing is the flagship service rather than the whole company, so the
 existing depth (`/how-it-works`, `/expertise`, `/for-engineers`, the screening
 funnel) is retained and sits underneath it. Copy that claimed a recruitment-only

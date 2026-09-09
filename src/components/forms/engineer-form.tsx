@@ -331,7 +331,7 @@ export function EngineerForm() {
         <CheckboxField
           label={
             <>
-              I consent to Swift Hire holding these details for recruitment
+              I consent to Staffing Viro holding these details for recruitment
               purposes, and to being contacted about relevant roles. I can ask
               for my data to be deleted at any time.
             </>

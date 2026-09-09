@@ -8,7 +8,7 @@ import { Section, SectionHeading } from "@/components/ui/section";
 export const metadata: Metadata = {
   title: "Case studies",
   description:
-    "Client engagement write-ups from Swift Hire are in preparation. Each will be published only with the client's written consent.",
+    "Client engagement write-ups from Staffing Viro are in preparation. Each will be published only with the client's written consent.",
   alternates: { canonical: "/case-studies" },
   // Nothing of substance here yet — keep it out of the index until it has content.
   robots: { index: false, follow: true },

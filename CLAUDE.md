@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Swift Hire — an outsourced business services agency site (Next.js 15 App
+Staffing Viro — an outsourced business services agency site (Next.js 15 App
 Router, React 19, TypeScript strict, Tailwind CSS v4, Framer Motion, Zod,
 React Hook Form). Ten services, each with a dedicated sub-page, plus deeper
 recruitment-specific content (`/how-it-works`, `/expertise`, `/for-engineers`).

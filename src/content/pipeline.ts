@@ -13,7 +13,7 @@ export type PipelineStage = {
    *  render the final stage sub-pixel. Real counts are always shown as text. */
   width: number;
   window: string;
-  owner: "Swift Hire" | "You" | "Together";
+  owner: "Staffing Viro" | "You" | "Together";
   detail: string;
 };
 
@@ -24,7 +24,7 @@ export const pipelineStages: readonly PipelineStage[] = [
     count: 240,
     width: 100,
     window: "Days 1–4",
-    owner: "Swift Hire",
+    owner: "Staffing Viro",
     detail:
       "We search our network, partner platforms and our own database, then run outbound to passive engineers who aren't looking. Volume at this stage is the whole point — it is what makes the later cuts affordable.",
   },
@@ -34,7 +34,7 @@ export const pipelineStages: readonly PipelineStage[] = [
     count: 68,
     width: 62,
     window: "Days 3–6",
-    owner: "Swift Hire",
+    owner: "Staffing Viro",
     detail:
       "A recruiter who has shipped software reads every profile against your brief — stack, domain, team size, trajectory. Two thirds drop out here, and none of them reach your inbox.",
   },
@@ -44,7 +44,7 @@ export const pipelineStages: readonly PipelineStage[] = [
     count: 19,
     width: 38,
     window: "Days 5–9",
-    owner: "Swift Hire",
+    owner: "Staffing Viro",
     detail:
       "Technical pre-screen, matched to the role: an async take-home for mid-level, live pair-programming for senior, system design for staff and above. You get the transcript and our scoring, not just a verdict.",
   },

@@ -12,7 +12,7 @@ import { faqJsonLd } from "@/lib/structured-data";
 export const metadata: Metadata = {
   title: "For engineers — join the talent pool",
   description:
-    "Join Swift Hire's vetted talent pool. Not a job board: submit a profile once, stay private, and hear from us only when a role genuinely matches. Free for engineers, always.",
+    "Join Staffing Viro's vetted talent pool. Not a job board: submit a profile once, stay private, and hear from us only when a role genuinely matches. Free for engineers, always.",
   alternates: { canonical: "/for-engineers" },
 };
 

@@ -46,7 +46,7 @@ export function FloatingCta() {
             // `scale-*` compiles to the standalone CSS `scale` property in
             // Tailwind v4, not `transform` — the transition list has to name
             // it directly or the hover scale snaps instead of easing in.
-            className="group inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-jade px-5 py-3 font-medium text-ink shadow-[0_10px_30px_-8px_rgba(0,200,139,0.55)] transition-[scale,background-color,box-shadow] duration-300 hover:scale-[1.03] hover:bg-[#00b47d] hover:shadow-[0_16px_40px_-10px_rgba(0,200,139,0.7)]"
+            className="group inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-jade px-5 py-3 font-medium text-ink shadow-[0_10px_30px_-8px_rgba(198,157,94,0.45)] transition-[scale,background-color,box-shadow] duration-300 hover:scale-[1.03] hover:bg-jade-strong hover:shadow-[0_16px_40px_-10px_rgba(198,157,94,0.6)]"
           >
             <svg
               viewBox="0 0 20 20"

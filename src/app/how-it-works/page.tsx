@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const ownerLabel = {
-  "Swift Hire": "We do this",
+  "Staffing Viro": "We do this",
   You: "You do this",
   Together: "Both",
 } as const;
@@ -104,7 +104,7 @@ export default function HowItWorksPage() {
               <dl className="flex flex-col gap-4 rounded-sm border border-on-paper/15 bg-paper-sunken p-5 lg:self-start">
                 <div>
                   <dt className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-jade-ink">
-                    {ownerLabel["Swift Hire"]}
+                    {ownerLabel["Staffing Viro"]}
                   </dt>
                   <dd className="mt-1.5 text-[0.875rem] leading-relaxed">
                     {step.agency}

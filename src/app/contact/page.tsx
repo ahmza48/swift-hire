@@ -13,7 +13,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact — start hiring engineers",
   description:
-    "Book a free 30-minute discovery call, or send a brief and we'll reply within one business day. Swift Hire recruits software engineers on behalf of client companies.",
+    "Book a free 30-minute discovery call, or send a brief and we'll reply within one business day. Staffing Viro recruits software engineers on behalf of client companies.",
   alternates: { canonical: "/contact" },
 };
 

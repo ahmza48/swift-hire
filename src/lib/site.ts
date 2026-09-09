@@ -4,11 +4,11 @@
  */
 
 export const siteConfig = {
-  name: "Swift Hire",
-  legalName: "Swift Hire Solutions Ltd.",
+  name: "Staffing Viro",
+  legalName: "Staffing Viro Ltd.",
   tagline: "Outsourced business services, run as your own team.",
   description:
-    "Swift Hire runs the operations you would rather not build in-house — recruitment, software development, customer support, data, finance, IT, marketing, back office, HR and payroll, and process consulting.",
+    "Staffing Viro runs the operations you would rather not build in-house — recruitment, software development, customer support, data, finance, IT, marketing, back office, HR and payroll, and process consulting.",
   /**
    * Canonical origin.
    *
@@ -30,7 +30,7 @@ export const siteConfig = {
   calendly: "https://calendly.com/swifthire/discovery-call",
   responseCommitment: "We reply to every enquiry within one business day.",
   guaranteeDays: 90,
-  /** Footer credit — the agency that built this site, not Swift Hire itself. */
+  /** Footer credit — the agency that built this site, not Staffing Viro itself. */
   poweredBy: {
     name: "Axenity",
     url: "https://www.axenity.com/",

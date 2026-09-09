@@ -88,7 +88,7 @@ export type Testimonial = {
 export const testimonials: readonly Testimonial[] = [
   {
     quote:
-      "We had the role open for five months with two other agencies. Swift Hire sent four profiles, we interviewed three, and hired the second one. The difference was that they had actually read the code the candidates wrote.",
+      "We had the role open for five months with two other agencies. Staffing Viro sent four profiles, we interviewed three, and hired the second one. The difference was that they had actually read the code the candidates wrote.",
     name: "Placeholder name",
     role: "VP Engineering",
     company: "Series B fintech",

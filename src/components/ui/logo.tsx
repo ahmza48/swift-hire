@@ -40,8 +40,8 @@ export function Logo({
         />
       </svg>
       <span
-        className="font-display text-[1.0625rem] font-bold tracking-[0.16em] uppercase"
-        style={{ fontStretch: "112%" }}
+        className="font-display text-[1.0625rem] font-semibold tracking-[0.12em] uppercase"
+        style={{ fontVariationSettings: '"SOFT" 20, "opsz" 36' }}
       >
         {siteConfig.name}
       </span>

@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "Engineering expertise and technical screening",
   description:
-    "The engineering domains Swift Hire recruits for — frontend, backend, mobile, platform, data and ML, QA, security and engineering leadership — and exactly how we technically assess candidates.",
+    "The engineering domains Staffing Viro recruits for — frontend, backend, mobile, platform, data and ML, QA, security and engineering leadership — and exactly how we technically assess candidates.",
   alternates: { canonical: "/expertise" },
 };
 

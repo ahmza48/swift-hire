@@ -15,7 +15,7 @@ import { serviceJsonLd } from "@/lib/structured-data";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Ten outsourced business services from Swift Hire: recruitment and staffing, software development, customer support, data processing, finance and accounting, IT, digital marketing, back office, HR and payroll, and process consulting.",
+    "Ten outsourced business services from Staffing Viro: recruitment and staffing, software development, customer support, data processing, finance and accounting, IT, digital marketing, back office, HR and payroll, and process consulting.",
   alternates: { canonical: "/services" },
 };
 

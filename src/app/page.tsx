@@ -25,7 +25,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: `${siteConfig.name} — We run the work. You run the business.`,
   description:
-    "Swift Hire delivers ten outsourced business services — recruitment, software development, customer support, data, finance, IT, marketing, back office, HR and payroll, and process consulting — each with a named team and documented process.",
+    "Staffing Viro delivers ten outsourced business services — recruitment, software development, customer support, data, finance, IT, marketing, back office, HR and payroll, and process consulting — each with a named team and documented process.",
   alternates: { canonical: "/" },
 };
 
@@ -35,8 +35,8 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- Hero */}
       <section className="on-ink grain surface-wash-ink relative overflow-hidden bg-ink text-on-ink">
         {/* Slow ambient drift, purely decorative and dropped under reduced motion. */}
-        <AmbientGlow className="pointer-events-none absolute -top-48 -right-32 -z-10 size-[42rem] rounded-full bg-[radial-gradient(circle,rgba(0,200,139,0.26),transparent_68%)] blur-3xl" />
-        <AmbientGlow className="pointer-events-none absolute top-1/2 -left-56 -z-10 size-[30rem] rounded-full bg-[radial-gradient(circle,rgba(0,164,114,0.14),transparent_70%)] blur-3xl" />
+        <AmbientGlow className="pointer-events-none absolute -top-48 -right-32 -z-10 size-[42rem] rounded-full bg-[radial-gradient(circle,rgba(198,157,94,0.20),transparent_68%)] blur-3xl" />
+        <AmbientGlow className="pointer-events-none absolute top-1/2 -left-56 -z-10 size-[30rem] rounded-full bg-[radial-gradient(circle,rgba(166,127,66,0.12),transparent_70%)] blur-3xl" />
 
         {/* Top padding clears the fixed header, transparent over this section. */}
         <div className="container-page pt-32 pb-20 md:pt-44 md:pb-28">
@@ -111,7 +111,7 @@ export default function HomePage() {
                 >
                   <dt className="sr-only">{stat.label}</dt>
                   <dd>
-                    <span className="block font-display text-4xl font-bold tracking-tight text-jade tabular-nums drop-shadow-[0_0_18px_rgba(0,200,139,0.35)] md:text-5xl">
+                    <span className="block font-display text-4xl font-bold tracking-tight text-jade tabular-nums drop-shadow-[0_0_18px_rgba(198,157,94,0.30)] md:text-5xl">
                       <CountUp
                         value={stat.value}
                         {...(stat.prefix ? { prefix: stat.prefix } : {})}

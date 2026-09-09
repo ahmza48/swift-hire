@@ -9,7 +9,7 @@ import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/cn";
 
 const ownerTone: Record<string, string> = {
-  "Swift Hire": "text-jade",
+  "Staffing Viro": "text-jade",
   Together: "text-on-ink",
   You: "text-on-ink-muted",
 };
@@ -128,8 +128,8 @@ export function Pipeline() {
                     "h-9 shrink-0 rounded-xs transition-[background-color,transform] duration-300 sm:h-11",
                     "origin-left group-hover:scale-x-[1.015]",
                     selected
-                      ? "bg-[linear-gradient(90deg,var(--color-jade-strong),var(--color-jade))] shadow-[0_0_16px_-2px_rgba(0,200,139,0.55)]"
-                      : "bg-ink-raised group-hover:bg-[#1b3049]",
+                      ? "bg-[linear-gradient(90deg,var(--color-jade-strong),var(--color-jade))] shadow-[0_0_16px_-2px_rgba(198,157,94,0.55)]"
+                      : "bg-ink-raised group-hover:bg-[#282d33]",
                   )}
                 />
                 <span className="flex min-w-0 items-baseline gap-2">
@@ -172,8 +172,8 @@ export function Pipeline() {
               <span className="text-on-ink-muted">
                 Runs&nbsp;
                 <span className={ownerTone[stage.owner] ?? "text-on-ink"}>
-                  {stage.owner === "Swift Hire"
-                    ? "Swift Hire"
+                  {stage.owner === "Staffing Viro"
+                    ? "Staffing Viro"
                     : stage.owner === "You"
                       ? "Your team"
                       : "Both"}

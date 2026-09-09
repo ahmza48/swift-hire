@@ -2,40 +2,45 @@
 
 /* ---------------------------------------------------------------------------
    Design tokens
-   Palette: deep navy as the dominant surface, warm paper as the counter-band,
-   one accent — signal jade — reserved for action, focus and "passed" states.
-   Two jades exist because the bright one cannot meet 4.5:1 on paper.
+
+   Editorial monochrome — bone paper, near-black ink, warm greys, one restrained
+   accent (a rich ochre used sparingly for actions, focus and marks-of-authority).
+   Three ochres exist because the mid-tone cannot meet 4.5:1 on paper: `jade` is
+   for ink surfaces and decoration, `jade-ink` for text on paper.
+
+   Token names stay `jade-*` because dozens of Tailwind classes reference them;
+   only the underlying values changed. Rename in a follow-up if desired.
 --------------------------------------------------------------------------- */
 
 @theme {
   /* Surfaces */
-  --color-ink: #0b1524;
-  --color-ink-raised: #142438;
-  --color-ink-line: #22344f;
-  --color-paper: #f3f0e9;
+  --color-ink: #14171a;
+  --color-ink-raised: #1e2226;
+  --color-ink-line: #2f353b;
+  --color-paper: #faf7f0;
   --color-paper-raised: #ffffff;
-  --color-paper-sunken: #e8e3d8;
+  --color-paper-sunken: #f0ece2;
 
   /* Text */
-  --color-on-ink: #f3f0e9;
-  --color-on-ink-muted: #96a3b5;
-  --color-on-paper: #0b1524;
-  --color-on-paper-muted: #5c5f5a;
+  --color-on-ink: #f5f0e6;
+  --color-on-ink-muted: #a8a099;
+  --color-on-paper: #14171a;
+  --color-on-paper-muted: #6b6660;
 
-  /* Accent */
-  --color-jade: #00c88b;
-  --color-jade-strong: #00a472;
-  --color-jade-ink: #006b4a;
+  /* Accent — warm ochre, sparingly used */
+  --color-jade: #c69d5e;
+  --color-jade-strong: #a67f42;
+  --color-jade-ink: #7d5f2e;
 
   /* Status */
-  --color-danger: #c02a3f;
-  --color-danger-on-ink: #ff7a8a;
+  --color-danger: #b02a3f;
+  --color-danger-on-ink: #f27a8a;
 
   /* Typography */
-  --font-display: var(--font-archivo), "Archivo", ui-sans-serif, system-ui,
-    sans-serif;
-  --font-sans: var(--font-public-sans), "Public Sans", ui-sans-serif, system-ui,
-    sans-serif;
+  --font-display: var(--font-fraunces), "Fraunces", "Georgia",
+    "Times New Roman", serif;
+  --font-sans: var(--font-inter-tight), "Inter Tight", ui-sans-serif,
+    system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace,
     "SFMono-Regular", monospace;
 
@@ -90,23 +95,42 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.025em;
+    font-weight: 600;
+    letter-spacing: -0.015em;
     text-wrap: balance;
+    /* Softens the serif's stem contrast slightly. Fraunces exposes SOFT via
+       font-variation-settings; the value is a mild curve, not a caricature. */
+    font-variation-settings: "SOFT" 30, "opsz" 84;
   }
 
-  /* Archivo is a variable font with a real width axis. Large display type is
-     set slightly condensed and tighter-tracked so it reads as one dense mass
-     rather than a wide, airy line — the whole reason this face was chosen
-     over a static one. */
+  /* Largest display beats are set tighter and use a larger optical size, so
+     the serif's contrast reads at true display scale rather than as blown-up
+     body copy. */
   h1,
   .display-tight {
-    font-stretch: 92%;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.028em;
+    font-variation-settings: "SOFT" 50, "opsz" 144;
+    font-weight: 500;
   }
 
   p {
     text-wrap: pretty;
+  }
+
+  /* Editorial link treatment for any bare <a> in body copy. Components that
+     want a different look (buttons, nav, cards) reset text-decoration
+     themselves, so this only paints inline prose links — the ones that
+     actually need to read as links. */
+  a:not(:where(button, .no-underline, [class*="rounded"], nav *, header *, footer *)) {
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s var(--ease-out-quart);
+  }
+
+  a:not(:where(button, .no-underline, [class*="rounded"], nav *, header *, footer *)):hover {
+    text-decoration-color: currentColor;
   }
 
   /* One consistent, high-contrast focus ring everywhere. */

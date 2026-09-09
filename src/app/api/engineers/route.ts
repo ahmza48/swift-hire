@@ -161,12 +161,12 @@ export async function POST(request: Request) {
    */
   void sendEmail({
     to: data.email,
-    subject: "We've got your profile — Swift Hire",
+    subject: "We've got your profile — Staffing Viro",
     html: renderEmailShell(
       "Profile received",
-      `<p style="margin:0 0 16px;color:#0b1524;font:400 15px/1.65 ui-sans-serif,system-ui,sans-serif">Thanks for submitting your profile. A recruiter will review it within five business days.</p>
-       <p style="margin:0 0 16px;color:#5c5f5a;font:400 15px/1.65 ui-sans-serif,system-ui,sans-serif">If your skills match a live client role, we'll email you to arrange a short intro call. If not, we keep your profile on file and get in touch when something relevant comes up — you won't hear from us in the meantime.</p>
-       <p style="margin:0;color:#5c5f5a;font:400 14px/1.65 ui-sans-serif,system-ui,sans-serif">To have your data removed at any point, reply to this email.</p>`,
+      `<p style="margin:0 0 16px;color:#14171a;font:400 15px/1.65 ui-sans-serif,system-ui,sans-serif">Thanks for submitting your profile. A recruiter will review it within five business days.</p>
+       <p style="margin:0 0 16px;color:#6b6660;font:400 15px/1.65 ui-sans-serif,system-ui,sans-serif">If your skills match a live client role, we'll email you to arrange a short intro call. If not, we keep your profile on file and get in touch when something relevant comes up — you won't hear from us in the meantime.</p>
+       <p style="margin:0;color:#6b6660;font:400 14px/1.65 ui-sans-serif,system-ui,sans-serif">To have your data removed at any point, reply to this email.</p>`,
     ),
   }).catch((error: unknown) => {
     console.error("[engineers] Acknowledgement email failed:", error);

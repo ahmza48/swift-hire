@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, JetBrains_Mono, Public_Sans } from "next/font/google";
+import { Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
 
 import { CookieConsent } from "@/components/cookie-consent";
 import { FloatingCta } from "@/components/floating-cta";
@@ -28,18 +28,21 @@ import "./globals.css";
  */
 export const dynamic = "force-dynamic";
 
-/* Display face: variable weight *and* width, so the large statements can
-   genuinely expand rather than just get heavier. */
-const archivo = Archivo({
+/* Display face: Fraunces — a variable serif with optical-size and softness
+   axes, tuned larger and slightly softer for the biggest display beats so
+   they read as editorial statements rather than utility headlines. */
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  variable: "--font-fraunces",
   display: "swap",
-  axes: ["wdth"],
+  axes: ["opsz", "SOFT"],
 });
 
-const publicSans = Public_Sans({
+/* Body face: Inter Tight — a modern grotesque with tighter proportions than
+   Inter, chosen so long-form copy stays sharp and even next to the serif. */
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-public-sans",
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -116,8 +119,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3f0e9" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1524" },
+    { media: "(prefers-color-scheme: light)", color: "#faf7f0" },
+    { media: "(prefers-color-scheme: dark)", color: "#14171a" },
   ],
 };
 
@@ -134,7 +137,7 @@ export default function RootLayout({
     <html
       lang="en-GB"
       suppressHydrationWarning
-      className={`${archivo.variable} ${publicSans.variable} ${jetbrainsMono.variable}`}
+      className={`${fraunces.variable} ${interTight.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <JsonLd data={organizationJsonLd()} />

@@ -44,7 +44,7 @@ export const services: readonly Service[] = [
     description:
       "We act as your hiring arm: sourcing, screening and assessing candidates on your behalf, then delivering three to five people ready to interview. You run the final conversation and make the offer.",
     metaDescription:
-      "Swift Hire runs recruitment on your behalf — sourcing, screening and technical assessment, delivered as a shortlist ready to interview. Per-hire, retained and embedded models.",
+      "Staffing Viro runs recruitment on your behalf — sourcing, screening and technical assessment, delivered as a shortlist ready to interview. Per-hire, retained and embedded models.",
     included: [
       {
         title: "Role brief and market reality check",
@@ -115,7 +115,7 @@ export const services: readonly Service[] = [
     description:
       "We stand up a delivery team — engineers, a lead, and QA — that works inside your repositories, your ticket tracker and your release process. You get shipped software, not a status deck.",
     metaDescription:
-      "Dedicated software development teams from Swift Hire. Full-stack, mobile, platform and QA engineers working in your codebase, your sprint cadence and your release process.",
+      "Dedicated software development teams from Staffing Viro. Full-stack, mobile, platform and QA engineers working in your codebase, your sprint cadence and your release process.",
     included: [
       {
         title: "A team, not a pile of contractors",
@@ -178,7 +178,7 @@ export const services: readonly Service[] = [
     description:
       "We recruit, train and manage support agents who work inside your helpdesk and follow your escalation paths. You set the standards; we own the staffing, coverage and quality assurance behind them.",
     metaDescription:
-      "Outsourced customer support from Swift Hire. Trained agents working in your helpdesk across email, chat and phone, with QA, coverage management and reporting against your SLAs.",
+      "Outsourced customer support from Staffing Viro. Trained agents working in your helpdesk across email, chat and phone, with QA, coverage management and reporting against your SLAs.",
     included: [
       {
         title: "Multi-channel coverage",
@@ -244,7 +244,7 @@ export const services: readonly Service[] = [
     description:
       "We handle high-volume data entry, migration, cleansing and enrichment with a documented quality process and a stated accuracy target. Every batch is verified before it reaches your systems.",
     metaDescription:
-      "Data entry, migration, cleansing and enrichment services from Swift Hire. Documented QA, double-key verification on critical fields, and a contractual accuracy target.",
+      "Data entry, migration, cleansing and enrichment services from Staffing Viro. Documented QA, double-key verification on critical fields, and a contractual accuracy target.",
     included: [
       {
         title: "Data entry and digitisation",
@@ -306,7 +306,7 @@ export const services: readonly Service[] = [
     description:
       "We run your day-to-day finance operations — ledgers, reconciliations, payables, receivables and month-end close — to a fixed calendar. Your accountant and board get clean numbers on time.",
     metaDescription:
-      "Outsourced finance and accounting from Swift Hire: bookkeeping, reconciliations, accounts payable and receivable, month-end close and management reporting on a fixed calendar.",
+      "Outsourced finance and accounting from Staffing Viro: bookkeeping, reconciliations, accounts payable and receivable, month-end close and management reporting on a fixed calendar.",
     included: [
       {
         title: "Bookkeeping and ledger maintenance",
@@ -372,7 +372,7 @@ export const services: readonly Service[] = [
     description:
       "We manage your endpoints, identity, networks and cloud infrastructure, and staff the helpdesk your team actually contacts. Proactive maintenance and monitoring rather than waiting for something to break.",
     metaDescription:
-      "Managed IT services from Swift Hire: helpdesk, endpoint and identity management, cloud infrastructure, backup and disaster recovery, and security baseline hardening.",
+      "Managed IT services from Staffing Viro: helpdesk, endpoint and identity management, cloud infrastructure, backup and disaster recovery, and security baseline hardening.",
     included: [
       {
         title: "Helpdesk and end-user support",
@@ -438,7 +438,7 @@ export const services: readonly Service[] = [
     description:
       "We run search, paid, content and lifecycle marketing with tracking wired to your CRM, so every channel is judged on the revenue it produces. Reporting shows cost per qualified opportunity, not vanity metrics.",
     metaDescription:
-      "Digital marketing from Swift Hire: SEO, paid search and social, content, email lifecycle and conversion optimisation — measured against pipeline and revenue, with attribution wired to your CRM.",
+      "Digital marketing from Staffing Viro: SEO, paid search and social, content, email lifecycle and conversion optimisation — measured against pipeline and revenue, with attribution wired to your CRM.",
     included: [
       {
         title: "Search engine optimisation",
@@ -504,7 +504,7 @@ export const services: readonly Service[] = [
     description:
       "We take on order processing, document management, scheduling, procurement support and the recurring administration that keeps a business running. Each process is documented before we run it, so it stops depending on one person's memory.",
     metaDescription:
-      "Back office operations outsourcing from Swift Hire: order processing, document management, scheduling, procurement support and vendor administration, documented and run to agreed SLAs.",
+      "Back office operations outsourcing from Staffing Viro: order processing, document management, scheduling, procurement support and vendor administration, documented and run to agreed SLAs.",
     included: [
       {
         title: "Order and transaction processing",
@@ -566,7 +566,7 @@ export const services: readonly Service[] = [
     description:
       "We administer payroll, benefits, onboarding, offboarding and employee records, and keep the statutory filings on schedule. Your people get paid correctly; your records stand up to inspection.",
     metaDescription:
-      "HR and payroll administration from Swift Hire: payroll processing, statutory filings, benefits administration, onboarding and offboarding, employee records and HR compliance support.",
+      "HR and payroll administration from Staffing Viro: payroll processing, statutory filings, benefits administration, onboarding and offboarding, employee records and HR compliance support.",
     included: [
       {
         title: "Payroll processing",
@@ -632,7 +632,7 @@ export const services: readonly Service[] = [
     description:
       "We map how work actually moves through your business, quantify where it stalls, and redesign the processes that cost you the most. The deliverable is an implemented change, not a slide deck.",
     metaDescription:
-      "Business process consulting from Swift Hire: process mapping, bottleneck analysis, automation assessment and operational redesign — delivered as implemented change with measured results.",
+      "Business process consulting from Staffing Viro: process mapping, bottleneck analysis, automation assessment and operational redesign — delivered as implemented change with measured results.",
     included: [
       {
         title: "Process mapping",
