@@ -18,12 +18,12 @@ const planned = [
   {
     label: "Series B fintech",
     outcome: "4 backend engineers in 11 weeks",
-    focus: "Retained search, Go and Kotlin, London hybrid",
+    focus: "Retained search, Go and Kotlin, hybrid Albuquerque",
   },
   {
     label: "Health-tech scale-up",
     outcome: "Platform lead after two failed searches",
-    focus: "Retained search, Kubernetes and Terraform, remote EU",
+    focus: "Retained search, Kubernetes and Terraform, remote US",
   },
   {
     label: "B2B SaaS, Series A",
@@ -84,8 +84,8 @@ export default function CaseStudiesPage() {
                 current client working on a search like yours.
               </p>
             </div>
-            <ButtonLink href="/contact" size="lg" className="w-full shrink-0 md:w-auto">
-              Book a call
+            <ButtonLink href="/contact#book" size="lg" className="w-full shrink-0 md:w-auto">
+              Book Appointment
               <ArrowRight />
             </ButtonLink>
           </div>

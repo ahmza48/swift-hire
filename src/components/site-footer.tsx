@@ -5,13 +5,6 @@ import { Logo } from "@/components/ui/logo";
 import { services } from "@/data/services";
 import { footerNav, siteConfig } from "@/lib/site";
 
-/**
- * How many services the footer lists before deferring to "All N services".
- * Five keeps the column roughly level with the tallest of the other three,
- * so the footer stays a balanced four-column block.
- */
-const FOOTER_SERVICE_COUNT = 5;
-
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
@@ -51,10 +44,9 @@ export function SiteFooter() {
 
           <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {/*
-              Generated from the catalogue, but capped. Listing all ten made
-              this column twice the height of its neighbours and stretched the
-              whole footer; the rest are one click away behind "All services",
-              which is what a footer link is for.
+              The full catalogue — three services, so the column shows each of
+              them plus a link to the overview page. No "All N" collapse needed
+              at this size.
             */}
             <div className="flex flex-col gap-4">
               <h2 className="eyebrow text-on-ink/45">
@@ -62,7 +54,7 @@ export function SiteFooter() {
                 Services
               </h2>
               <ul className="flex flex-col gap-2.5">
-                {services.slice(0, FOOTER_SERVICE_COUNT).map((service) => (
+                {services.map((service) => (
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
@@ -77,7 +69,7 @@ export function SiteFooter() {
                     href="/services"
                     className="inline-flex min-h-[28px] items-center gap-1.5 rounded-xs text-[0.9375rem] font-medium text-jade transition-colors hover:text-on-ink"
                   >
-                    All {services.length} services
+                    Services overview
                     <ArrowRight className="size-3.5" />
                   </Link>
                 </li>
@@ -145,10 +137,10 @@ export function SiteFooter() {
             </a>
 
             <Link
-              href="/contact"
+              href="/contact#book"
               className="inline-flex min-h-[44px] items-center gap-2 rounded-xs text-[0.9375rem] text-jade transition-colors hover:text-on-ink"
             >
-              Book a call
+              Book Appointment
               <ArrowRight />
             </Link>
           </div>

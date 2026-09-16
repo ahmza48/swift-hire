@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, JetBrains_Mono, Poppins } from "next/font/google";
 
 import { CookieConsent } from "@/components/cookie-consent";
 import { FloatingCta } from "@/components/floating-cta";
@@ -28,18 +28,18 @@ import "./globals.css";
  */
 export const dynamic = "force-dynamic";
 
-/* Display face: Fraunces — a variable serif with optical-size and softness
-   axes, tuned larger and slightly softer for the biggest display beats so
-   they read as editorial statements rather than utility headlines. */
-const fraunces = Fraunces({
+/* Display face: Poppins — geometric sans-serif, popular corporate
+   professional pairing. Heavy weights read as statements at display size
+   ("Exaggerated Minimalism"). */
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
-  axes: ["opsz", "SOFT"],
 });
 
 /* Body face: Inter Tight — a modern grotesque with tighter proportions than
-   Inter, chosen so long-form copy stays sharp and even next to the serif. */
+   Inter, chosen so long-form copy stays sharp and even next to the display. */
 const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-inter-tight",
@@ -119,8 +119,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf7f0" },
-    { media: "(prefers-color-scheme: dark)", color: "#14171a" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f10" },
   ],
 };
 
@@ -137,7 +137,7 @@ export default function RootLayout({
     <html
       lang="en-GB"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${interTight.variable} ${jetbrainsMono.variable}`}
+      className={`${poppins.variable} ${interTight.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <JsonLd data={organizationJsonLd()} />

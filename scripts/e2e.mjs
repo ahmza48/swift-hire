@@ -115,7 +115,7 @@ section("MOBILE (375×667) — hamburger, services accordion, navigation");
     })),
   );
 
-  check("all 10 services listed", links.length === 10, `got ${links.length}`);
+  check("all 3 services listed", links.length === 3, `got ${links.length}`);
   check(
     "every service link is rendered with height",
     links.every((l) => l.visible),
@@ -217,28 +217,33 @@ section("DESKTOP (1440×900) — mega-menu hover, keyboard, escape");
   const servicesBtn = await page.$('button[aria-controls="services-mega-menu"]');
   check("services trigger present", servicesBtn !== null);
 
-  // Hover must NOT open it — a full-width overlay on hover is too easy to
-  // trigger by accident while crossing the header.
+  // Hover-to-open: the primary interaction is now pointer-hover so the panel
+  // must appear when the cursor lands on the trigger.
   await servicesBtn.hover();
-  await new Promise((r) => setTimeout(r, 500));
-  check(
-    "hover alone does not open mega-menu",
-    (await page.$("#services-mega-menu")) === null,
-  );
+  await page.waitForSelector("#services-mega-menu", {
+    visible: true,
+    timeout: 5000,
+  });
+  await new Promise((r) => setTimeout(r, 200));
+  check("mega-menu opens on hover", true);
 
+  // Click still works as an equivalent open/toggle for keyboard/tap users.
+  // We close first so the click actually opens rather than closes.
+  await page.mouse.move(20, 20);
+  await new Promise((r) => setTimeout(r, 300));
   await servicesBtn.click();
   await page.waitForSelector("#services-mega-menu", {
     visible: true,
     timeout: 5000,
   });
-  await new Promise((r) => setTimeout(r, 350));
+  await new Promise((r) => setTimeout(r, 200));
   check("mega-menu opens on click", true);
 
   const megaLinks = await page.$$eval(
     "#services-mega-menu ul a[href]",
     (nodes) => nodes.map((n) => n.getAttribute("href")),
   );
-  check("mega-menu lists 10 services", megaLinks.length === 10, `got ${megaLinks.length}`);
+  check("mega-menu lists 3 services", megaLinks.length === 3, `got ${megaLinks.length}`);
 
   const cols = await page.$eval("#services-mega-menu ul", (el) =>
     getComputedStyle(el).gridTemplateColumns.split(" ").length,
@@ -264,9 +269,13 @@ section("DESKTOP (1440×900) — mega-menu hover, keyboard, escape");
     (await page.$("#services-mega-menu")) === null,
   );
 
-  // Reopen, then confirm Escape closes and returns focus to the trigger.
-  await servicesBtn.click();
+  // Reopen via hover, then confirm Escape closes and returns focus to the
+  // trigger. Using hover rather than click because a mouse traversal to the
+  // button now toggles between mouseenter-open and click-toggle in the same
+  // gesture; hover keeps the intent unambiguous for this assertion.
+  await servicesBtn.hover();
   await page.waitForSelector("#services-mega-menu", { visible: true, timeout: 5000 });
+  await servicesBtn.focus();
   await page.keyboard.press("Escape");
   await new Promise((r) => setTimeout(r, 400));
   check(

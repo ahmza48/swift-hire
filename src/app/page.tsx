@@ -9,23 +9,21 @@ import {
   HeroStagger,
   HeroUnderline,
 } from "@/components/motion/hero-stagger";
-import { Marquee } from "@/components/motion/marquee";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
 import { Pipeline } from "@/components/pipeline";
 import { ArrowRight, ButtonLink } from "@/components/ui/button";
 import { IconTile } from "@/components/ui/icon-tile";
 import { Eyebrow, Section, SectionHeading } from "@/components/ui/section";
-import { techStrip } from "@/content/expertise";
 import { painPoints, stats, testimonials } from "@/content/home";
 import { processSteps } from "@/content/process";
 import { services } from "@/data/services";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — We run the work. You run the business.`,
+  title: `${siteConfig.name} — Recruitment, BPO and Customer Support`,
   description:
-    "Staffing Viro delivers ten outsourced business services — recruitment, software development, customer support, data, finance, IT, marketing, back office, HR and payroll, and process consulting — each with a named team and documented process.",
+    "Staffing Viro is a specialist staffing agency across three pillars: recruitment & staffing (permanent, executive and contract), business process outsourcing, and outsourced customer support — each with a named team and documented process.",
   alternates: { canonical: "/" },
 };
 
@@ -35,8 +33,8 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- Hero */}
       <section className="on-ink grain surface-wash-ink relative overflow-hidden bg-ink text-on-ink">
         {/* Slow ambient drift, purely decorative and dropped under reduced motion. */}
-        <AmbientGlow className="pointer-events-none absolute -top-48 -right-32 -z-10 size-[42rem] rounded-full bg-[radial-gradient(circle,rgba(198,157,94,0.20),transparent_68%)] blur-3xl" />
-        <AmbientGlow className="pointer-events-none absolute top-1/2 -left-56 -z-10 size-[30rem] rounded-full bg-[radial-gradient(circle,rgba(166,127,66,0.12),transparent_70%)] blur-3xl" />
+        <AmbientGlow className="pointer-events-none absolute -top-48 -right-32 -z-10 size-[42rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10),transparent_68%)] blur-3xl" />
+        <AmbientGlow className="pointer-events-none absolute top-1/2 -left-56 -z-10 size-[30rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_70%)] blur-3xl" />
 
         {/* Top padding clears the fixed header, transparent over this section. */}
         <div className="container-page pt-32 pb-20 md:pt-44 md:pb-28">
@@ -61,21 +59,22 @@ export default function HomePage() {
 
             <HeroItem>
               <p className="mt-8 max-w-2xl text-[length:var(--text-lead)] leading-relaxed text-on-ink-muted">
-                {siteConfig.name} takes on the operations you would rather not
-                build in-house — recruitment, engineering, support, finance, IT
-                and more. Ten services, each with a named team, a documented
-                process and reporting you can hold us to.
+                {siteConfig.name} is a specialist staffing agency across three
+                pillars — recruitment &amp; staffing, business process
+                outsourcing and outsourced customer support. Each is run by a
+                named team with a documented process and reporting you can hold
+                us to.
               </p>
             </HeroItem>
 
             <HeroItem>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <ButtonLink
-                  href="/contact"
+                  href="/contact#book"
                   size="lg"
-                  data-analytics="cta_click_start_hiring"
+                  data-analytics="cta_schedule_appointment"
                 >
-                  Get a quote
+                  Book Appointment
                   <ArrowRight />
                 </ButtonLink>
                 <ButtonLink href="/services" variant="onInk" size="lg">
@@ -111,7 +110,7 @@ export default function HomePage() {
                 >
                   <dt className="sr-only">{stat.label}</dt>
                   <dd>
-                    <span className="block font-display text-4xl font-bold tracking-tight text-jade tabular-nums drop-shadow-[0_0_18px_rgba(198,157,94,0.30)] md:text-5xl">
+                    <span className="block font-display text-4xl font-bold tracking-tight text-jade tabular-nums drop-shadow-[0_0_18px_rgba(255,255,255,0.20)] md:text-5xl">
                       <CountUp
                         value={stat.value}
                         {...(stat.prefix ? { prefix: stat.prefix } : {})}
@@ -139,7 +138,7 @@ export default function HomePage() {
             id="pain-heading"
             index={1}
             eyebrow="Why companies call us"
-            title="Four reasons engineering roles stay open"
+            title="Four reasons roles stay open longer than they should"
             lead="Each one has a cost you are already paying, whether or not it appears on a budget line."
           />
         </Reveal>
@@ -183,8 +182,8 @@ export default function HomePage() {
             id="process-heading"
             index={2}
             eyebrow="The engagement"
-            title="Eight steps, and you only appear in three of them"
-            lead="The full process is published because it is the thing you are buying. Nothing here is a black box."
+            title="Four steps, and you only appear in two of them"
+            lead="The process is published because it is the thing you are buying. Nothing here is a black box."
           />
         </Reveal>
 
@@ -217,7 +216,7 @@ export default function HomePage() {
             href="/how-it-works"
             className="mt-10 inline-flex min-h-[44px] items-center gap-2.5 rounded-xs font-medium text-jade-ink underline-offset-8 transition-all hover:underline"
           >
-            See all eight steps, with timings
+            See all four steps, with timings
             <ArrowRight />
           </Link>
         </Reveal>
@@ -238,15 +237,15 @@ export default function HomePage() {
             index={3}
             tone="ink"
             eyebrow="Services"
-            title="Ten things you can stop doing yourself"
+            title="Three pillars, one partner"
             lead="Each is a standalone engagement with its own team and process. Most clients start with one and add a second within a year."
           />
         </Reveal>
 
         <Stagger
           as="ul"
-          stagger={0.055}
-          className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          stagger={0.06}
+          className="mt-14 grid gap-5 md:grid-cols-3"
         >
           {services.map((service) => (
             <StaggerItem as="li" key={service.slug} className="h-full">
@@ -276,39 +275,24 @@ export default function HomePage() {
         </Stagger>
       </Section>
 
-      {/* Expertise — light, following the dark services band. */}
+      {/* Domain expertise — narrows the recruitment pitch to specifics without
+          re-listing every discipline. The tech marquee below carries the
+          long-tail vocabulary; this heading only positions it. */}
       <Section tone="paper" size="lg" ariaLabelledBy="expertise-heading">
         <Reveal className="max-w-3xl">
           <SectionHeading
             id="expertise-heading"
             index={4}
-            eyebrow="Expertise"
-            title="Our recruitment practice only does engineers"
-            lead="Ten services, but the hiring one stays narrow on purpose. A technical screen is only worth something when the person running it has written the code."
+            eyebrow="Domains we recruit for"
+            title="From engineering rooms to boardrooms"
+            lead="Technical talent, legal and corporate counsel, architecture and real estate, civil and MEP engineering — plus executive search across sales, finance and operations. The catalogue is in Recruitment &amp; Staffing."
           />
-          <ButtonLink href="/expertise" variant="secondary" size="lg" className="mt-9">
-            See every domain we cover
+          <ButtonLink href="/services/recruitment-staffing" variant="secondary" size="lg" className="mt-9">
+            See every discipline we cover
             <ArrowRight />
           </ButtonLink>
         </Reveal>
       </Section>
-
-      {/*
-        Full-bleed ticker. The stack list was a static wrapped block of tags
-        that sat there; as a moving strip it becomes the one piece of ambient
-        life on the page and separates the two light bands around it.
-      */}
-      <div className="on-ink grain surface-wash-ink border-y border-ink-line bg-ink py-10">
-        <Marquee
-          items={techStrip}
-          durationSeconds={52}
-          renderItem={(tech) => (
-            <span className="inline-flex items-center rounded-xs border border-ink-line bg-ink-raised/60 px-4 py-2.5 font-mono text-[0.8125rem] whitespace-nowrap text-on-ink-muted transition-colors duration-200 hover:border-jade hover:text-jade">
-              {tech}
-            </span>
-          )}
-        />
-      </div>
 
       {/* -------------------------------------------------------- Social proof */}
       <Section tone="sunken" size="lg" ariaLabelledBy="proof-heading">
@@ -377,12 +361,12 @@ export default function HomePage() {
           </div>
 
           <ButtonLink
-            href="/contact"
+            href="/contact#book"
             size="lg"
             className="w-full shrink-0 sm:w-auto"
-            data-analytics="cta_click_start_hiring"
+            data-analytics="cta_schedule_appointment"
           >
-            Book a discovery call
+            Book Appointment
             <ArrowRight />
           </ButtonLink>
         </Reveal>

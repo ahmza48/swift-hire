@@ -5,10 +5,10 @@
 
 export const siteConfig = {
   name: "Staffing Viro",
-  legalName: "Staffing Viro Ltd.",
-  tagline: "Outsourced business services, run as your own team.",
+  legalName: "Staffing Viro LLC",
+  tagline: "Recruitment, BPO and customer support — run as your own team.",
   description:
-    "Staffing Viro runs the operations you would rather not build in-house — recruitment, software development, customer support, data, finance, IT, marketing, back office, HR and payroll, and process consulting.",
+    "Staffing Viro is a specialist staffing agency: recruitment and staffing (permanent, executive and contract), business process outsourcing, and outsourced customer support — each with a named team and documented process.",
   /**
    * Canonical origin.
    *
@@ -19,15 +19,29 @@ export const siteConfig = {
    */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://swifthire.com",
   email: "hello@swifthire.com",
-  talentEmail: "engineers@swifthire.com",
+  talentEmail: "careers@swifthire.com",
   privacyEmail: "privacy@swifthire.com",
-  phoneDisplay: "+44 20 7946 0142",
-  location: "London, UK",
-  timezone: "GMT / BST — overlapping CET, EST and GST",
-  markets: "UK, EU and the Gulf, with remote-first placements worldwide",
-  linkedin: "https://www.linkedin.com/company/swifthire",
+  phoneDisplay: "+1 (505) 555-0142",
+  /**
+   * Registered US business address.
+   *
+   * Individual parts are exposed for structured-data emitters (schema.org
+   * PostalAddress) that need them broken out; `location` is the one-line
+   * display string used in footers and about copy.
+   */
+  address: {
+    street: "1209 Mountain Road Pl NE, Ste R",
+    locality: "Albuquerque",
+    region: "NM",
+    postalCode: "87110",
+    country: "US",
+  },
+  location: "Albuquerque, NM",
+  timezone: "MST / MDT — overlapping CST, EST and PST business hours",
+  markets: "United States, with remote-first placements nationwide",
+  linkedin: "https://www.linkedin.com/company/staffingviro",
   /** Fallback Calendly link when NEXT_PUBLIC_CALENDLY_URL is unset. */
-  calendly: "https://calendly.com/swifthire/discovery-call",
+  calendly: "https://calendly.com/staffingviro/discovery-call",
   responseCommitment: "We reply to every enquiry within one business day.",
   guaranteeDays: 90,
   /** Footer credit — the agency that built this site, not Staffing Viro itself. */
@@ -45,13 +59,20 @@ export type NavItem = {
   hasMegaMenu?: boolean;
 };
 
-/** Primary header navigation. */
+/** Primary header navigation.
+ *
+ * Order matters — this is the visible order in the header on desktop and in the
+ * mobile drawer. "Book Appointment" is the primary CTA button (not a link),
+ * so it isn't in this array; it is rendered separately by the header component
+ * and always sits at the far right.
+ */
 export const primaryNav: readonly NavItem[] = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/services", label: "Services", hasMegaMenu: true },
   { href: "/how-it-works", label: "How it works" },
-  { href: "/expertise", label: "Expertise" },
-  { href: "/for-engineers", label: "For engineers" },
-  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact Us" },
+  { href: "/careers", label: "Careers" },
 ] as const;
 
 /**
@@ -62,20 +83,20 @@ export const primaryNav: readonly NavItem[] = [
  */
 export const footerNav: readonly { title: string; items: readonly NavItem[] }[] = [
   {
-    title: "For companies",
+    title: "Clients",
     items: [
       { href: "/how-it-works", label: "How it works" },
-      { href: "/expertise", label: "Expertise" },
       { href: "/case-studies", label: "Case studies" },
-      { href: "/contact", label: "Get a quote" },
+      { href: "/contact", label: "Contact us" },
+      { href: "/contact#book", label: "Schedule appointment" },
     ],
   },
   {
-    title: "For engineers",
+    title: "Candidates",
     items: [
-      { href: "/for-engineers", label: "Join the talent pool" },
-      { href: "/for-engineers#what-to-expect", label: "What to expect" },
-      { href: "/for-engineers#faq", label: "FAQ" },
+      { href: "/careers", label: "Careers" },
+      { href: "/careers#roles", label: "Open roles" },
+      { href: "/careers#talent-pool", label: "Join the talent pool" },
     ],
   },
   {

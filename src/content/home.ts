@@ -44,32 +44,32 @@ export type PainPoint = {
 
 export const painPoints: readonly PainPoint[] = [
   {
-    problem: "Your HR team has never hired an engineer",
+    problem: "Your team has never hired for this role",
     cost:
-      "Generalist recruiters screen on keywords, so the shortlist is long, plausible and wrong.",
+      "Generalist recruiters screen on keywords, so the shortlist is long, plausible and wrong for the actual job.",
     answer:
-      "Every profile is read by a recruiter with an engineering background, against a rubric agreed with your tech lead.",
+      "Every profile is read by a specialist who has recruited into this discipline before, against a rubric agreed with your hiring manager.",
   },
   {
-    problem: "The role has been open for four months",
+    problem: "The role has been open for months",
     cost:
-      "The roadmap slips, the team absorbs the work, and your best engineer starts looking too.",
+      "Projects slip, the team absorbs the work, and your strongest players start looking somewhere else too.",
     answer:
-      "Median 11 days from signed brief to shortlist, because sourcing starts the day after kickoff.",
+      "Median 14 days from signed brief to shortlist, because sourcing starts the day after kickoff — not the day after we finish talking about it.",
   },
   {
-    problem: "Interviews are eating your engineers' week",
+    problem: "Interviews are eating your leadership's week",
     cost:
-      "Six hours of senior engineering time per candidate, most of it spent on people who will not pass.",
+      "Hours of senior time per candidate, most of it spent on people who never should have reached the calendar.",
     answer:
-      "We run the technical screen and hand you the transcript. Your team only meets the final four.",
+      "We run the technical or competency screen and hand you the transcript. Your team only meets the final three to five.",
   },
   {
     problem: "The last hire did not work out",
     cost:
-      "A mis-hire costs roughly six months of salary once you count ramp, exit and the rerun.",
+      "A mis-hire costs roughly six months of salary once you count ramp, exit and the rerun of the search.",
     answer:
-      "Structured assessment with written evidence, plus a 90-day replacement guarantee we have to honour.",
+      "Structured assessment with written evidence, plus a 90-day replacement guarantee we have to honour if the placement leaves.",
   },
 ];
 

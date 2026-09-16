@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "How it works",
   description:
-    "The full eight-step engineering recruitment process, with timings and a clear split of who does what. Brief, source, screen, assess, shortlist, interview, close, support.",
+    "Our recruitment and staffing process in four steps: post the job, review applications, take interviews, analyze and schedule. Timings, deliverables and a clear split of who does what at every stage.",
   alternates: { canonical: "/how-it-works" },
 };
 
@@ -25,13 +25,13 @@ export default function HowItWorksPage() {
     <>
       <PageHero
         eyebrow="The process"
-        title="Every step, and exactly who does it"
+        title="Four steps, and exactly who does it"
         lead="You are buying a process, so the process is published. Timings below are medians from live engagements — not best cases."
         crumbs={[{ name: "How it works", href: "/how-it-works" }]}
       >
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/contact" size="lg">
-            Start a brief
+          <ButtonLink href="/contact#book" size="lg">
+            Book Appointment
             <ArrowRight />
           </ButtonLink>
           <ButtonLink href="/services" variant="onInk" size="lg">
@@ -44,8 +44,8 @@ export default function HowItWorksPage() {
       <Section tone="sunken" size="sm">
         <Reveal className="grid gap-8 sm:grid-cols-3">
           {[
-            { value: "11 days", label: "Brief to first shortlist (median)" },
-            { value: "3 of 8", label: "Steps that need your team's time" },
+            { value: "14 days", label: "Brief to first shortlist (median)" },
+            { value: "2 of 4", label: "Steps that need your team's time" },
             {
               value: `${siteConfig.guaranteeDays} days`,
               label: "Replacement guarantee window",
@@ -184,8 +184,8 @@ export default function HowItWorksPage() {
               {siteConfig.responseCommitment}
             </p>
           </div>
-          <ButtonLink href="/contact" size="lg" className="w-full shrink-0 md:w-auto">
-            Start hiring
+          <ButtonLink href="/contact#book" size="lg" className="w-full shrink-0 md:w-auto">
+            Book Appointment
             <ArrowRight />
           </ButtonLink>
         </Reveal>

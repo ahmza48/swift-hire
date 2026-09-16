@@ -3,42 +3,51 @@
 /* ---------------------------------------------------------------------------
    Design tokens
 
-   Editorial monochrome — bone paper, near-black ink, warm greys, one restrained
-   accent (a rich ochre used sparingly for actions, focus and marks-of-authority).
-   Three ochres exist because the mid-tone cannot meet 4.5:1 on paper: `jade` is
-   for ink surfaces and decoration, `jade-ink` for text on paper.
+   Sleek monochrome — pure white paper, near-black ink, calibrated greys.
+   No colour accent: emphasis is carried by size, weight, contrast and
+   whitespace ("Exaggerated Minimalism" — bold minimalism for a professional
+   staffing agency).
 
-   Token names stay `jade-*` because dozens of Tailwind classes reference them;
-   only the underlying values changed. Rename in a follow-up if desired.
+   Legacy `jade-*` tokens map onto the monochrome contrast points so 30+
+   Tailwind classes across the site keep resolving. Rename in a follow-up
+   once every call site has been audited.
+
+   Surface-context contract:
+     `--color-jade`       — high-contrast accent for INK surfaces (white)
+     `--color-jade-ink`   — high-contrast accent for PAPER surfaces (black)
+     `--color-jade-strong`— hover / active variant (used mainly on ink)
+
+   The three-token pattern preserves AA contrast in both directions without
+   the caller needing to know which surface it is on.
 --------------------------------------------------------------------------- */
 
 @theme {
   /* Surfaces */
-  --color-ink: #14171a;
-  --color-ink-raised: #1e2226;
-  --color-ink-line: #2f353b;
-  --color-paper: #faf7f0;
+  --color-ink: #0f0f10;
+  --color-ink-raised: #17171a;
+  --color-ink-line: #27272a;
+  --color-paper: #ffffff;
   --color-paper-raised: #ffffff;
-  --color-paper-sunken: #f0ece2;
+  --color-paper-sunken: #f5f5f5;
 
   /* Text */
-  --color-on-ink: #f5f0e6;
-  --color-on-ink-muted: #a8a099;
-  --color-on-paper: #14171a;
-  --color-on-paper-muted: #6b6660;
+  --color-on-ink: #ffffff;
+  --color-on-ink-muted: #a1a1aa;
+  --color-on-paper: #0f0f10;
+  --color-on-paper-muted: #6b6b6b;
 
-  /* Accent — warm ochre, sparingly used */
-  --color-jade: #c69d5e;
-  --color-jade-strong: #a67f42;
-  --color-jade-ink: #7d5f2e;
+  /* Accent — contextual monochrome, no colour */
+  --color-jade: #ffffff;
+  --color-jade-strong: #e5e5e5;
+  --color-jade-ink: #0f0f10;
 
   /* Status */
-  --color-danger: #b02a3f;
-  --color-danger-on-ink: #f27a8a;
+  --color-danger: #b91c1c;
+  --color-danger-on-ink: #f87171;
 
   /* Typography */
-  --font-display: var(--font-fraunces), "Fraunces", "Georgia",
-    "Times New Roman", serif;
+  --font-display: var(--font-poppins), "Poppins", ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", sans-serif;
   --font-sans: var(--font-inter-tight), "Inter Tight", ui-sans-serif,
     system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace,
@@ -96,21 +105,16 @@
   h4 {
     font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
     text-wrap: balance;
-    /* Softens the serif's stem contrast slightly. Fraunces exposes SOFT via
-       font-variation-settings; the value is a mild curve, not a caricature. */
-    font-variation-settings: "SOFT" 30, "opsz" 84;
   }
 
-  /* Largest display beats are set tighter and use a larger optical size, so
-     the serif's contrast reads at true display scale rather than as blown-up
-     body copy. */
+  /* Largest display beats sit tight and heavy — Poppins at its top weight is
+     a statement face, matching the "Exaggerated Minimalism" style direction. */
   h1,
   .display-tight {
-    letter-spacing: -0.028em;
-    font-variation-settings: "SOFT" 50, "opsz" 144;
-    font-weight: 500;
+    letter-spacing: -0.035em;
+    font-weight: 700;
   }
 
   p {
@@ -133,9 +137,11 @@
     text-decoration-color: currentColor;
   }
 
-  /* One consistent, high-contrast focus ring everywhere. */
+  /* One consistent, high-contrast focus ring everywhere. Uses the surface
+     contrast token so it works against paper (dark ring on white) and
+     against ink (light ring on black) without a media query. */
   :focus-visible {
-    outline: 2px solid var(--color-jade-strong);
+    outline: 2px solid var(--color-jade-ink);
     outline-offset: 3px;
     border-radius: var(--radius-xs);
   }
@@ -145,9 +151,11 @@
     outline-color: var(--color-jade);
   }
 
+  /* Selection reverses to always be legible: black background + white text
+     on either surface. */
   ::selection {
-    background-color: var(--color-jade);
-    color: var(--color-ink);
+    background-color: var(--color-ink);
+    color: var(--color-on-ink);
   }
 
   /* Only hide the ring for mouse users, never for keyboard users. */
@@ -208,7 +216,9 @@
 }
 
 /* Soft directional light wash, one per tone. Kept under 5% opacity so it never
-   touches text-contrast ratios — this is surface, not colour. */
+   touches text-contrast ratios — this is surface, not colour. In monochrome
+   mode the washes render as very faint greys, giving large flat fields a
+   directional light source rather than a coloured highlight. */
 @utility surface-wash-paper {
   position: relative;
   isolation: isolate;
@@ -221,12 +231,12 @@
     pointer-events: none;
     background-image: radial-gradient(
         60rem 32rem at 88% -8%,
-        color-mix(in oklab, var(--color-jade) 5%, transparent),
+        color-mix(in oklab, var(--color-on-paper) 4%, transparent),
         transparent 60%
       ),
       radial-gradient(
         40rem 26rem at 6% 108%,
-        color-mix(in oklab, var(--color-jade-ink) 4%, transparent),
+        color-mix(in oklab, var(--color-on-paper) 3%, transparent),
         transparent 65%
       );
   }
@@ -244,7 +254,7 @@
     pointer-events: none;
     background-image: radial-gradient(
       54rem 30rem at 82% -12%,
-      color-mix(in oklab, var(--color-jade) 10%, transparent),
+      color-mix(in oklab, var(--color-on-ink) 6%, transparent),
       transparent 62%
     );
   }
@@ -258,7 +268,8 @@
    animation loop makes them feel heavier, not smoother.
 --------------------------------------------------------------------------- */
 
-/* Primary CTA: lift, warm the colour, and cast a soft accent glow. */
+/* Primary CTA: lift and cast a soft neutral shadow. Monochrome — no
+   coloured glow; the shadow reads as depth, not decoration. */
 @utility cta-lift {
   transition:
     transform 0.3s var(--ease-out-quart),
@@ -267,7 +278,7 @@
 
   &:hover {
     transform: scale(1.03);
-    box-shadow: 0 12px 28px -10px color-mix(in oklab, var(--color-jade) 65%, transparent);
+    box-shadow: 0 12px 28px -10px color-mix(in oklab, var(--color-ink) 45%, transparent);
   }
 
   &:active {

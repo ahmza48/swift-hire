@@ -73,8 +73,8 @@ export default async function ServicePage({ params }: PageProps) {
         ]}
       >
         <div className="flex flex-wrap gap-3">
-          <ButtonLink href={`/contact?service=${service.slug}`} size="lg">
-            Get a quote
+          <ButtonLink href={`/contact#book?service=${service.slug}`} size="lg">
+            Book Appointment
             <ArrowRight />
           </ButtonLink>
           <ButtonLink href="/services" variant="onInk" size="lg">
@@ -262,8 +262,8 @@ export default async function ServicePage({ params }: PageProps) {
             </p>
           </div>
 
-          <ButtonLink href="/contact" size="lg" className="w-full shrink-0 sm:w-auto">
-            Book a discovery call
+          <ButtonLink href="/contact#book" size="lg" className="w-full shrink-0 sm:w-auto">
+            Book Appointment
             <ArrowRight />
           </ButtonLink>
         </Reveal>

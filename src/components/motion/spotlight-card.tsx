@@ -15,13 +15,13 @@ type Tone = "paper" | "ink";
 
 const surface: Record<Tone, string> = {
   paper:
-    "border-on-paper/12 bg-paper-raised hover:border-jade-strong/60 hover:shadow-[0_20px_44px_-20px_rgba(20,23,26,0.35)]",
-  ink: "border-ink-line bg-ink-raised/50 hover:border-jade/60 hover:shadow-[0_20px_48px_-20px_rgba(0,0,0,0.75)]",
+    "border-on-paper/12 bg-paper-raised hover:border-on-paper/45 hover:shadow-[0_20px_44px_-20px_rgba(15,15,16,0.28)]",
+  ink: "border-ink-line bg-ink-raised/50 hover:border-on-ink/45 hover:shadow-[0_20px_48px_-20px_rgba(0,0,0,0.75)]",
 };
 
 const glow: Record<Tone, string> = {
-  paper: "rgba(125, 95, 46, 0.12)",
-  ink: "rgba(198, 157, 94, 0.14)",
+  paper: "rgba(15, 15, 16, 0.06)",
+  ink: "rgba(255, 255, 255, 0.10)",
 };
 
 /**

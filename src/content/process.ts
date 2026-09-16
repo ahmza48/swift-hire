@@ -6,78 +6,54 @@ export type ProcessStep = {
   detail: string;
 };
 
-/** The full eight-step engagement, in order. */
+/**
+ * The engagement, condensed to four beats.
+ *
+ * Each step is written so the split of responsibility is obvious at a glance:
+ * `agency` is the sentence describing what our team does, `client` is the
+ * sentence describing what yours does. `detail` fleshes it out on
+ * /how-it-works. `timeframe` is the median from live engagements — not a
+ * best case, not a promise.
+ */
 export const processSteps: readonly ProcessStep[] = [
   {
-    title: "Brief and kickoff",
-    timeframe: "Day 0–1",
+    title: "Post the job",
+    timeframe: "Day 0–2",
     agency:
-      "Runs a 60-minute kickoff, writes the brief, agrees the assessment bar and the scorecard.",
-    client: "Fills a short role brief and joins the kickoff call.",
+      "Runs the kickoff, writes the brief, agrees the scoring rubric and starts the search — proactive outbound plus our own network.",
+    client:
+      "Fills a short role brief and joins a 60-minute kickoff call. That is your entire lift for this stage.",
     detail:
-      "We pull apart the role before we source for it: the stack, the team it joins, who it reports to, what the first 90 days look like, and the compensation band you can actually sign off. If the brief is unrealistic for the market, you hear it on this call and not six weeks later.",
+      "We pull the role, the team, the reporting line and the pay band apart in one call — so the search runs against a real specification, not a job description. Sourcing starts inside 48 hours: partner platforms, our own database, and targeted outbound to people who are not applying to anything. If the brief cannot be filled at the pay band you have in that market, you hear it in the first hour.",
   },
   {
-    title: "Talent sourcing",
-    timeframe: "Day 1–4",
+    title: "Review applications",
+    timeframe: "Day 2–8",
     agency:
-      "Searches its network, partner platforms and internal database, then runs targeted outbound.",
-    client: "Nothing required.",
+      "Screens every profile against the rubric, reads the resume and the evidence, and drops the ones that do not clear the bar — before they reach your inbox.",
+    client:
+      "Nothing required. You get a weekly summary of pipeline volume and any early signal.",
     detail:
-      "Most of the engineers worth hiring are not applying to anything. We map the companies where your role's skills concentrate and approach people directly, with a message about your team rather than a job-board blast.",
+      "A recruiter who knows the discipline reads every profile — CV, portfolio or code sample as appropriate — and scores it against the rubric we agreed with you. Two thirds of applicants drop out at this stage. You only see the ones who cleared it, with the scoring evidence attached so you can judge our reasoning rather than just our verdict.",
   },
   {
-    title: "Technical screening",
-    timeframe: "Day 3–9",
+    title: "Take interviews",
+    timeframe: "Day 8–14",
     agency:
-      "Runs the pre-screen — async take-home, live pair-programming, or system design by seniority.",
-    client: "Nothing required. Receives the scoring rubric up front.",
+      "Runs the technical or competency interview, writes it up, and delivers three to five shortlisted candidates with a written recommendation per person.",
+    client:
+      "Reviews the shortlist and runs your own final interviews with the candidates you want to meet.",
     detail:
-      "The format follows the role. Mid-level engineers get a timeboxed async problem. Senior engineers pair with one of our technical assessors on real code. Staff and above get a system-design session. You see the rubric before we run it, and the transcript after.",
+      "Assessment format follows the role — technical exercise for engineers, competency interview for leadership hires, portfolio review for architecture and design. You receive the shortlist as one document per candidate: assessment result with evidence, culture-fit notes, compensation expectations, notice period and a plain statement of where we think the risk is. Then you interview only the people worth interviewing.",
   },
   {
-    title: "Behavioural and culture-fit interview",
-    timeframe: "Day 5–10",
+    title: "Analyze and schedule",
+    timeframe: "Day 14–21",
     agency:
-      "Assesses communication, working style, motivation and alignment to your team.",
-    client: "Nothing required.",
+      "Manages the offer, negotiation, references and counter-offer risk to signature — then plans the start date and onboarding cadence with both sides.",
+    client:
+      "Approves the offer and receives a scheduled start plan matched to your team's needs.",
     detail:
-      "Culture fit is not vibes. We ask about how they handle disagreement in code review, what they do when a deadline is clearly slipping, and why they are leaving their current role — then write down the answers so you can judge them yourself.",
-  },
-  {
-    title: "Shortlist delivery",
-    timeframe: "Day 8–12",
-    agency:
-      "Delivers three to five candidates with assessment results, notes, comp expectations and availability.",
-    client: "Reviews the shortlist and picks who to interview.",
-    detail:
-      "One document per candidate: summary, technical assessment result with evidence, culture-fit notes, salary expectation, notice period, and a plain statement of where we think the risk is. We include the reservations, not just the case for hiring.",
-  },
-  {
-    title: "Client interviews",
-    timeframe: "Day 12–18",
-    agency:
-      "Schedules, prepares candidates, facilitates debriefs, keeps momentum.",
-    client: "Runs the final interviews and makes the decision.",
-    detail:
-      "This is the part we do not take from you. You interview, you decide. We handle the calendar tetris, brief the candidate so they arrive prepared, and run the debrief so a decision actually gets made instead of drifting for a fortnight.",
-  },
-  {
-    title: "Offer and closing",
-    timeframe: "Day 18–21",
-    agency:
-      "Handles negotiation, reference checks, counter-offer risk and candidate communication until signature.",
-    client: "Approves the offer.",
-    detail:
-      "We know the candidate's number before you make an offer, because we asked in week one. If a counter-offer lands, we have already had that conversation with them. Most offers we take to signature close in under four days.",
-  },
-  {
-    title: "Post-placement support",
-    timeframe: "Day 30 / 60 / 90",
-    agency:
-      "Checks in with both sides at 30, 60 and 90 days. Replaces the hire free of charge inside the guarantee window.",
-    client: "Onboards the engineer.",
-    detail:
-      "If the hire does not work out within 90 days, we run the search again at no cost. That guarantee is the reason we cut hard at the screening stage rather than sending you volume.",
+      "We know the candidate's number before you make an offer, because we asked in week one — so counter-offers rarely surprise anyone. Once an offer is signed, we work with your team on start date, onboarding cadence and any handover needed on their side. We then check in at 30, 60 and 90 days, and cover a replacement inside that window at no additional cost if the hire does not work out.",
   },
 ] as const;

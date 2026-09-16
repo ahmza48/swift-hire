@@ -128,8 +128,8 @@ export function Pipeline() {
                     "h-9 shrink-0 rounded-xs transition-[background-color,transform] duration-300 sm:h-11",
                     "origin-left group-hover:scale-x-[1.015]",
                     selected
-                      ? "bg-[linear-gradient(90deg,var(--color-jade-strong),var(--color-jade))] shadow-[0_0_16px_-2px_rgba(198,157,94,0.55)]"
-                      : "bg-ink-raised group-hover:bg-[#282d33]",
+                      ? "bg-[linear-gradient(90deg,var(--color-jade-strong),var(--color-jade))] shadow-[0_0_16px_-2px_rgba(255,255,255,0.35)]"
+                      : "bg-ink-raised group-hover:bg-[#27272a]",
                   )}
                 />
                 <span className="flex min-w-0 items-baseline gap-2">

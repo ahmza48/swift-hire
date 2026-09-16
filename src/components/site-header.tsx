@@ -48,6 +48,27 @@ export function SiteHeader() {
   const mobileRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const servicesButtonRef = useRef<HTMLButtonElement>(null);
+  /*
+   * A single timer that debounces both hover-open and hover-close so a quick
+   * mouse traversal across the "Services" label doesn't flicker the panel.
+   * Cleared on every state change to avoid stale timers competing.
+   */
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearHoverTimer = () => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    hoverTimer.current = null;
+  };
+  const scheduleClose = () => {
+    clearHoverTimer();
+    // Close after a short grace period so the pointer can travel from the
+    // trigger into the dropdown without the panel disappearing under it.
+    hoverTimer.current = setTimeout(() => setMegaOpen(false), 140);
+  };
+  const openNow = () => {
+    clearHoverTimer();
+    setMegaOpen(true);
+  };
+  useEffect(() => clearHoverTimer, []);
 
   /* Header goes frosted once the hero is behind us. */
   useEffect(() => {
@@ -67,11 +88,8 @@ export function SiteHeader() {
   /*
    * Click-outside dismissal.
    *
-   * The panel is click-toggled, not hover-driven — a full-width overlay that
-   * opens on hover is far too easy to trigger by accident while moving the
-   * pointer across the header, and just as easy to get stuck open. With click
-   * there is no ambiguity about intent, so it needs an explicit way out:
-   * anywhere outside the panel and its trigger.
+   * The panel is primarily hover-driven now, but the trigger is still a real
+   * <button> for keyboard operability. A tap outside must close it either way.
    */
   useEffect(() => {
     if (!megaOpen) return;
@@ -152,8 +170,12 @@ export function SiteHeader() {
     };
   }, [mobileOpen]);
 
-  const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(`${href}/`);
+  const isActive = (href: string) => {
+    // Home is exact-match only; every other route is prefix-match so
+    // /services/bpo highlights the Services item.
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   /* Transparent over the hero; frosted once scrolled or when a panel is open. */
   const solid = scrolled || megaOpen || mobileOpen;
@@ -190,20 +212,37 @@ export function SiteHeader() {
           <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
             {primaryNav.map((item) =>
               item.hasMegaMenu ? (
-                <div key={item.href} className="relative flex items-center">
+                <div
+                  key={item.href}
+                  className="relative flex items-center"
+                  onMouseEnter={openNow}
+                  onMouseLeave={scheduleClose}
+                  onFocusCapture={openNow}
+                >
+                  {/*
+                   * The trigger is a <button> so screen readers announce it
+                   * with the right role and aria-expanded state, but hover is
+                   * the primary interaction: pointer users get a natural
+                   * mouseover-open, keyboard users get click+arrow support.
+                   */}
                   <button
                     ref={servicesButtonRef}
                     type="button"
                     aria-expanded={megaOpen}
                     aria-haspopup="true"
                     aria-controls="services-mega-menu"
-                    onClick={() => setMegaOpen((open) => !open)}
+                    /*
+                     * Click always OPENS, never toggles. Hover has already
+                     * opened it for pointer users; the click handler exists
+                     * so keyboard and tap users have a way in too. Closing is
+                     * mouseleave, click-outside, or Escape — the three
+                     * dismissal paths are wired below. A toggle-on-click here
+                     * caused a race with the hover-open path (mouseenter →
+                     * openNow, then click → close) that made the panel
+                     * flicker shut on a normal cursor arrival.
+                     */
+                    onClick={openNow}
                     className={cn(
-                      // Browsers default <button> to cursor:default, not
-                      // pointer — the other nav items are <Link>s (anchors),
-                      // which get pointer for free, so without this the
-                      // Services trigger was the only item in the row that
-                      // didn't look clickable on hover.
                       "relative inline-flex cursor-pointer items-center gap-1.5 rounded-xs px-3.5 py-2 text-[0.9375rem] transition-colors",
                       megaOpen || isActive(item.href)
                         ? "text-jade"
@@ -246,12 +285,12 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-2">
             <ButtonLink
-              href="/contact"
+              href="/contact#book"
               size="md"
               className="hidden sm:inline-flex"
-              data-analytics="cta_click_start_hiring"
+              data-analytics="cta_schedule_appointment"
             >
-              Get a quote
+              Book Appointment
               <ArrowRight />
             </ButtonLink>
 
@@ -300,13 +339,15 @@ export function SiteHeader() {
             transition={
               prefersReduced ? { duration: 0 } : { duration: 0.22, ease: "easeOut" }
             }
+            onMouseEnter={openNow}
+            onMouseLeave={scheduleClose}
             className="absolute inset-x-0 top-full hidden max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-ink-line bg-ink/95 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.75)] backdrop-blur-xl lg:block"
           >
-            <div className="container-page py-7">
-              <div className="mb-5 flex items-baseline justify-between gap-6 border-b border-ink-line pb-3">
+            <div className="container-page py-8">
+              <div className="mb-6 flex items-baseline justify-between gap-6 border-b border-ink-line pb-3">
                 <p className="eyebrow text-jade">
                   <span aria-hidden="true" className="h-px w-7 bg-current opacity-70" />
-                  What we do
+                  Three pillars, one partner
                 </p>
                 <Link
                   href="/services"
@@ -317,21 +358,24 @@ export function SiteHeader() {
                 </Link>
               </div>
 
-              {/* Three columns keeps ten services to ~4 rows instead of 5,
-                  so the panel never approaches full-screen height. */}
-              <ul className="grid grid-cols-3 gap-x-6 gap-y-0.5">
+              {/* Three services get three roomy cards, not a cramped list —
+                  each shows the icon, the name and a one-line tagline. */}
+              <ul className="grid grid-cols-3 gap-4">
                 {services.map((service) => (
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="group flex items-center gap-3 rounded-sm p-2.5 transition-colors hover:bg-ink-raised"
+                      className="group flex h-full items-start gap-4 rounded-md border border-ink-line/70 bg-ink-raised/40 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-on-ink/40 hover:bg-ink-raised"
                     >
-                      <span className="text-jade transition-transform duration-300 group-hover:scale-110">
+                      <span className="mt-0.5 inline-flex size-10 shrink-0 items-center justify-center rounded-sm bg-on-ink/5 text-on-ink transition-colors group-hover:bg-on-ink/10">
                         <ServiceIcon name={service.icon} className="size-5" />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-[0.9375rem] font-medium text-on-ink transition-colors group-hover:text-jade">
+                        <span className="block text-[1rem] font-semibold text-on-ink transition-colors group-hover:text-jade">
                           {service.name}
+                        </span>
+                        <span className="mt-1.5 block text-[0.8125rem] leading-relaxed text-on-ink-muted">
+                          {service.tagline}
                         </span>
                       </span>
                     </Link>
@@ -358,9 +402,10 @@ export function SiteHeader() {
               prefersReduced ? { duration: 0 } : { duration: 0.24, ease: "easeOut" }
             }
             /*
-             * Ten services plus five nav links overflows a 375×667 screen, so the
-             * sheet scrolls independently and `overscroll-contain` stops the scroll
-             * chaining to the locked page behind it.
+             * Six nav rows plus three sub-service rows fits within a small
+             * screen without the sheet's own scroll usually engaging, but the
+             * safety margin is kept in case content grows. `overscroll-contain`
+             * stops the scroll chaining to the locked page behind it.
              */
             className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-ink-line bg-ink lg:hidden"
           >
@@ -456,8 +501,8 @@ export function SiteHeader() {
                 )}
               </ul>
 
-              <ButtonLink href="/contact" size="lg" className="mt-6 mb-2 w-full">
-                Get a quote
+              <ButtonLink href="/contact#book" size="lg" className="mt-6 mb-2 w-full">
+                Book Appointment
                 <ArrowRight />
               </ButtonLink>
             </nav>

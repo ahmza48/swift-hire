@@ -27,19 +27,20 @@ export default function ContactPage() {
         crumbs={[{ name: "Contact", href: "/contact" }]}
       />
 
-      {/* Engineer redirect — put high, so candidates don't fill the wrong form. */}
+      {/* Candidate redirect — put high, so job-seekers don't fill the client
+          brief form by mistake. */}
       <Section tone="sunken" size="sm">
-        <Reveal className="flex flex-col items-start gap-4 rounded-md border border-jade-strong/40 bg-jade/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between md:p-7">
+        <Reveal className="flex flex-col items-start gap-4 rounded-md border border-on-paper/25 bg-paper-sunken p-6 sm:flex-row sm:items-center sm:justify-between md:p-7">
           <p className="leading-relaxed">
             <strong className="font-semibold">Looking for a job?</strong> This
-            form is for companies hiring. Engineers join our talent pool
-            instead — it takes about three minutes.
+            form is for companies hiring. Candidates join our talent pool via
+            Careers — it takes about three minutes.
           </p>
           <Link
-            href="/for-engineers"
+            href="/careers"
             className="inline-flex min-h-[44px] shrink-0 items-center gap-2.5 rounded-xs font-medium text-jade-ink underline-offset-8 transition-all hover:underline"
           >
-            Go to the engineer form
+            Go to Careers
             <ArrowRight />
           </Link>
         </Reveal>
@@ -53,7 +54,7 @@ export default function ContactPage() {
             id="book-heading"
             className="mt-5 text-[length:var(--text-h2)] leading-[1.05] font-bold"
           >
-            Book a call
+            Book Appointment
           </h2>
         </Reveal>
 
@@ -146,8 +147,14 @@ export default function ContactPage() {
                 </h3>
                 <dl className="mt-4 flex flex-col gap-4 text-[0.9375rem]">
                   <div>
-                    <dt className="text-on-paper-muted">Based in</dt>
-                    <dd className="mt-1">{siteConfig.location}</dd>
+                    <dt className="text-on-paper-muted">Office</dt>
+                    <dd className="mt-1 leading-relaxed">
+                      {siteConfig.address.street}
+                      <br />
+                      {siteConfig.address.locality},{" "}
+                      {siteConfig.address.region}{" "}
+                      {siteConfig.address.postalCode}
+                    </dd>
                   </div>
                   <div>
                     <dt className="text-on-paper-muted">Working hours</dt>

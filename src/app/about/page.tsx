@@ -11,7 +11,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why Staffing Viro exists, how we operate, and who runs it. An outsourced business services partner based in London, serving the UK, EU and Gulf markets.",
+    "Why Staffing Viro exists, how we operate, and who runs it. A specialist staffing agency based in Albuquerque, New Mexico — serving companies across the United States with remote-first placements nationwide.",
   alternates: { canonical: "/about" },
 };
 
@@ -31,7 +31,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="Built by people who got tired of bad shortlists"
-        lead={`${siteConfig.legalName} runs business operations on behalf of the companies that hire us. Ten services, each with a documented process we publish rather than describe.`}
+        lead={`${siteConfig.legalName} runs recruitment and outsourced operations on behalf of the companies that hire us. Three service pillars — recruitment & staffing, BPO and customer support — each with a documented process we publish rather than describe.`}
         crumbs={[{ name: "About", href: "/about" }]}
       />
 

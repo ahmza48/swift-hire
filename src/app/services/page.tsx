@@ -15,7 +15,7 @@ import { serviceJsonLd } from "@/lib/structured-data";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Ten outsourced business services from Staffing Viro: recruitment and staffing, software development, customer support, data processing, finance and accounting, IT, digital marketing, back office, HR and payroll, and process consulting.",
+    "Three service pillars from Staffing Viro: recruitment & staffing (permanent, executive and contract), BPO (business process outsourcing across back-office, finance, HR and data), and outsourced customer support. Each with a named team and documented process.",
   alternates: { canonical: "/services" },
 };
 
@@ -24,12 +24,12 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Ten services. One partner."
-        lead="Each is run by a dedicated team with its own process, quality standard and reporting. Take one, or hand over the operations you would rather not build in-house."
+        title="Three pillars. One partner."
+        lead="Each is run by a dedicated team with its own process, quality standard and reporting. Take one, or combine them — most clients start with recruitment and add a second pillar within a year."
         crumbs={[{ name: "Services", href: "/services" }]}
       >
-        <ButtonLink href="/contact" size="lg">
-          Get a quote
+        <ButtonLink href="/contact#book" size="lg">
+          Book Appointment
           <ArrowRight />
         </ButtonLink>
       </PageHero>
@@ -46,8 +46,8 @@ export default function ServicesPage() {
 
         <Stagger
           as="ul"
-          stagger={0.07}
-          className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+          stagger={0.08}
+          className="mt-14 grid gap-6 md:grid-cols-3"
         >
           {services.map((service) => (
             <StaggerItem as="li" key={service.slug} className="h-full">
@@ -91,8 +91,8 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <ButtonLink href="/contact" size="lg" className="w-full shrink-0 sm:w-auto">
-            Book a discovery call
+          <ButtonLink href="/contact#book" size="lg" className="w-full shrink-0 sm:w-auto">
+            Book Appointment
             <ArrowRight />
           </ButtonLink>
         </Reveal>

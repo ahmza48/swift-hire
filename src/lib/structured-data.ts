@@ -18,15 +18,21 @@ export function organizationJsonLd() {
     sameAs: [siteConfig.linkedin],
     address: {
       "@type": "PostalAddress",
-      addressLocality: "London",
-      addressCountry: "GB",
+      streetAddress: siteConfig.address.street,
+      addressLocality: siteConfig.address.locality,
+      addressRegion: siteConfig.address.region,
+      postalCode: siteConfig.address.postalCode,
+      addressCountry: siteConfig.address.country,
     },
-    areaServed: ["GB", "EU", "AE"],
+    areaServed: ["US"],
     knowsAbout: [
-      "Software engineering recruitment",
-      "Technical screening",
-      "Retained search",
-      "Recruitment process outsourcing",
+      "Permanent placement recruitment",
+      "Executive search",
+      "Contract and temporary staffing",
+      "Business process outsourcing",
+      "Outsourced customer support",
+      "Corporate and legal recruitment",
+      "Architecture and engineering recruitment",
     ],
     contactPoint: [
       {
@@ -54,7 +60,7 @@ export function websiteJsonLd() {
     name: siteConfig.name,
     description: siteConfig.description,
     publisher: { "@id": `${siteConfig.url}/#organization` },
-    inLanguage: "en-GB",
+    inLanguage: "en-US",
   };
 }
 
