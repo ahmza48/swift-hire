@@ -7,53 +7,64 @@ export type ProcessStep = {
 };
 
 /**
- * The engagement, condensed to four beats.
+ * The recruitment engagement, in five beats.
  *
  * Each step is written so the split of responsibility is obvious at a glance:
- * `agency` is the sentence describing what our team does, `client` is the
- * sentence describing what yours does. `detail` fleshes it out on
- * /how-it-works. `timeframe` is the median from live engagements — not a
- * best case, not a promise.
+ * `agency` describes what our team does, `client` describes what yours does.
+ * `detail` is the /how-it-works long form. `timeframe` is a directional
+ * range from a typical engagement — not a headline promise; the homepage and
+ * /how-it-works both read from these fields, so wording that appears there
+ * is edited here.
  */
 export const processSteps: readonly ProcessStep[] = [
   {
-    title: "Post the job",
-    timeframe: "Day 0–2",
+    title: "Post Your Job",
+    timeframe: "Kickoff",
     agency:
-      "Runs the kickoff, writes the brief, agrees the scoring rubric and starts the search — proactive outbound plus our own network.",
+      "Turns your brief into a hiring specification: responsibilities, required skills, seniority, compensation band and hiring timeline — captured in writing before sourcing starts.",
     client:
-      "Fills a short role brief and joins a 60-minute kickoff call. That is your entire lift for this stage.",
+      "Shares the role, the team it joins, the budget it sits inside and the timeline you are working to. One 60-minute kickoff call.",
     detail:
-      "We pull the role, the team, the reporting line and the pay band apart in one call — so the search runs against a real specification, not a job description. Sourcing starts inside 48 hours: partner platforms, our own database, and targeted outbound to people who are not applying to anything. If the brief cannot be filled at the pay band you have in that market, you hear it in the first hour.",
+      "The brief we agree in this session is the reference every later step scores against — so it is worth taking seriously. We pull apart the role, the team, the reporting line, the pay band and the first-90-days plan; if the brief is unrealistic for the market at that number, you hear it before sourcing begins.",
   },
   {
-    title: "Review applications",
-    timeframe: "Day 2–8",
+    title: "Search & Review",
+    timeframe: "Weeks 1–2",
     agency:
-      "Screens every profile against the rubric, reads the resume and the evidence, and drops the ones that do not clear the bar — before they reach your inbox.",
+      "Reviews our existing talent network first, then runs targeted outbound and reviews any new applicant flow — so the candidate pool includes people you would never have surfaced yourself.",
     client:
-      "Nothing required. You get a weekly summary of pipeline volume and any early signal.",
+      "Nothing required. Receives a weekly summary of pipeline volume and any early signal.",
     detail:
-      "A recruiter who knows the discipline reads every profile — CV, portfolio or code sample as appropriate — and scores it against the rubric we agreed with you. Two thirds of applicants drop out at this stage. You only see the ones who cleared it, with the scoring evidence attached so you can judge our reasoning rather than just our verdict.",
+      "We start with the candidates we already know — the placements we have made before, the people we have interviewed recently — because that is the fastest and most reliable source of hire. Alongside that we run targeted outbound to the companies where the profile lives, and review any live applicant flow you have. The volume at this stage is the whole point; it is what makes the later cuts affordable.",
   },
   {
-    title: "Take interviews",
-    timeframe: "Day 8–14",
+    title: "Screen & Interview",
+    timeframe: "Weeks 2–3",
     agency:
-      "Runs the technical or competency interview, writes it up, and delivers three to five shortlisted candidates with a written recommendation per person.",
+      "Screens every candidate against the rubric agreed at kickoff and runs the initial interview or assessment — so unsuitable candidates never reach your calendar.",
     client:
-      "Reviews the shortlist and runs your own final interviews with the candidates you want to meet.",
+      "Nothing required. Receives the scoring rubric up front so nothing about the process is a surprise.",
     detail:
-      "Assessment format follows the role — technical exercise for engineers, competency interview for leadership hires, portfolio review for architecture and design. You receive the shortlist as one document per candidate: assessment result with evidence, culture-fit notes, compensation expectations, notice period and a plain statement of where we think the risk is. Then you interview only the people worth interviewing.",
+      "A specialist recruiter runs the initial screen and interview against the rubric we agreed with you — technical exercise for engineers, competency interview for corporate and leadership roles. Two thirds of the pool drops out at this stage; you do not lose an hour of your team's time to any of them. The transcript and scoring for the ones who advance goes into the shortlist so you can judge our reasoning.",
   },
   {
-    title: "Analyze and schedule",
-    timeframe: "Day 14–21",
+    title: "Analyze & Shortlist",
+    timeframe: "Weeks 3–4",
     agency:
-      "Manages the offer, negotiation, references and counter-offer risk to signature — then plans the start date and onboarding cadence with both sides.",
+      "Evaluates every advanced candidate against the agreed criteria — relevant experience, skills, interview evidence, availability, compensation — and shortlists only the strongest three to five.",
     client:
-      "Approves the offer and receives a scheduled start plan matched to your team's needs.",
+      "Nothing required at this stage. The shortlist arrives as one document per candidate.",
     detail:
-      "We know the candidate's number before you make an offer, because we asked in week one — so counter-offers rarely surprise anyone. Once an offer is signed, we work with your team on start date, onboarding cadence and any handover needed on their side. We then check in at 30, 60 and 90 days, and cover a replacement inside that window at no additional cost if the hire does not work out.",
+      "Every candidate who cleared the screen is evaluated against the criteria that came out of kickoff. Only the ones who genuinely fit the specification are shortlisted; the ones who nearly fit are declined with feedback rather than sent forward as filler. Each shortlisted profile carries the assessment evidence, the compensation expectations, the notice period and a plain statement of where we think the risk is.",
+  },
+  {
+    title: "Profiles Delivered",
+    timeframe: "Weeks 4+",
+    agency:
+      "Presents three to five shortlisted profiles with the screening and interview evidence attached — then manages the offer, negotiation and post-placement check-ins.",
+    client:
+      "Reviews the shortlist, runs your own final interviews with the candidates you want to meet, makes the hire.",
+    detail:
+      "You receive one written document per candidate — assessment result, culture-fit notes, compensation expectations and notice period — so you can decide who to interview from the summary rather than a stack of resumes. Once you pick, we handle the calendar, negotiate the offer to signature and check in at 30, 60 and 90 days. Every placement is covered by our written 90-day replacement guarantee.",
   },
 ] as const;

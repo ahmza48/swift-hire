@@ -34,7 +34,8 @@ export default function Error({
 
         <p className="mt-6 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-on-ink-muted">
           An error stopped this page from rendering. Try again — if it keeps
-          happening, email hello@swifthire.com and quote the reference below.
+          happening, reach us through the Contact page and quote the
+          reference below.
         </p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">

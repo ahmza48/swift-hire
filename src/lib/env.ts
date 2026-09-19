@@ -23,7 +23,7 @@ const serverEnvSchema = z.object({
 
   /** Resend API key. Absent = email delivery disabled. */
   RESEND_API_KEY: z.string().min(1).optional(),
-  /** Verified sender, e.g. "Staffing Viro <notifications@swifthire.com>". */
+  /** Verified sender, e.g. "Staffing Viro <notifications@your-domain>". */
   EMAIL_FROM: z.string().min(3).optional(),
   /** Where client enquiries land. */
   EMAIL_TO_SALES: z.string().email().optional(),

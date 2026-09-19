@@ -8,16 +8,15 @@ import { processSteps } from "@/content/process";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "How it works",
+  title: "How It Works",
   description:
-    "Our recruitment and staffing process in four steps: post the job, review applications, take interviews, analyze and schedule. Timings, deliverables and a clear split of who does what at every stage.",
+    "Our recruitment process in five steps: post the job, search and review, screen and interview, analyze and shortlist, profiles delivered. Timings, deliverables and a clear split of who does what at every stage.",
   alternates: { canonical: "/how-it-works" },
 };
 
 const ownerLabel = {
-  "Staffing Viro": "We do this",
-  You: "You do this",
-  Together: "Both",
+  agency: "We do this",
+  you: "You do this",
 } as const;
 
 export default function HowItWorksPage() {
@@ -25,27 +24,28 @@ export default function HowItWorksPage() {
     <>
       <PageHero
         eyebrow="The process"
-        title="Four steps, and exactly who does it"
-        lead="You are buying a process, so the process is published. Timings below are medians from live engagements — not best cases."
-        crumbs={[{ name: "How it works", href: "/how-it-works" }]}
+        title="Five steps, and exactly who does it"
+        lead="You are buying a process, so the process is published. Every stage below carries a clear split of who does what and a directional timeframe from real engagements."
+        crumbs={[{ name: "How It Works", href: "/how-it-works" }]}
       >
-        <div className="flex flex-wrap gap-3">
-          <ButtonLink href="/contact#book" size="lg">
-            Book Appointment
-            <ArrowRight />
-          </ButtonLink>
-          <ButtonLink href="/services" variant="onInk" size="lg">
-            Compare engagement models
-          </ButtonLink>
-        </div>
+        <ButtonLink href="/services" variant="onInk" size="lg">
+          Compare services
+          <ArrowRight />
+        </ButtonLink>
       </PageHero>
 
       {/* Headline commitment */}
       <Section tone="sunken" size="sm">
         <Reveal className="grid gap-8 sm:grid-cols-3">
           {[
-            { value: "14 days", label: "Brief to first shortlist (median)" },
-            { value: "2 of 4", label: "Steps that need your team's time" },
+            {
+              value: `${processSteps.length} steps`,
+              label: "From signed brief to signed offer",
+            },
+            {
+              value: `${processSteps.length - 3} of ${processSteps.length}`,
+              label: "Steps that need your team's time",
+            },
             {
               value: `${siteConfig.guaranteeDays} days`,
               label: "Replacement guarantee window",
@@ -104,7 +104,7 @@ export default function HowItWorksPage() {
               <dl className="flex flex-col gap-4 rounded-sm border border-on-paper/15 bg-paper-sunken p-5 lg:self-start">
                 <div>
                   <dt className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-jade-ink">
-                    {ownerLabel["Staffing Viro"]}
+                    {ownerLabel.agency}
                   </dt>
                   <dd className="mt-1.5 text-[0.875rem] leading-relaxed">
                     {step.agency}
@@ -112,7 +112,7 @@ export default function HowItWorksPage() {
                 </div>
                 <div className="border-t border-on-paper/12 pt-4">
                   <dt className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-on-paper-muted">
-                    {ownerLabel.You}
+                    {ownerLabel.you}
                   </dt>
                   <dd className="mt-1.5 text-[0.875rem] leading-relaxed text-on-paper-muted">
                     {step.client}
@@ -133,7 +133,7 @@ export default function HowItWorksPage() {
               tone="ink"
               eyebrow="Boundaries"
               title="What we deliberately do not do"
-              lead="An intermediary that oversteps is worse than no intermediary. These lines stay where they are."
+              lead="A recruitment partner that oversteps is worse than none at all. These lines stay where they are."
             />
           </Reveal>
 
@@ -154,7 +154,7 @@ export default function HowItWorksPage() {
                 },
                 {
                   title: "We do not recruit from our own clients",
-                  body: "Anyone we place, and anyone in your engineering team, is off-limits for the life of the engagement plus twelve months.",
+                  body: "Anyone we place, and anyone in your team, is off-limits for the life of the engagement plus twelve months.",
                 },
               ].map((item) => (
                 <li

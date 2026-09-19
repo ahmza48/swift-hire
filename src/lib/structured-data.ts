@@ -14,8 +14,14 @@ export function organizationJsonLd() {
     legalName: siteConfig.legalName,
     url: siteConfig.url,
     description: siteConfig.description,
-    email: siteConfig.email,
-    sameAs: [siteConfig.linkedin],
+    /*
+     * Optional fields are omitted when the underlying env-driven config is
+     * empty rather than emitted as empty strings — a JSON-LD field with an
+     * empty value is a validator warning and, in the case of `email` and
+     * `sameAs`, harms the entity record we are trying to build.
+     */
+    ...(siteConfig.email ? { email: siteConfig.email } : {}),
+    ...(siteConfig.linkedin ? { sameAs: [siteConfig.linkedin] } : {}),
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,
@@ -26,27 +32,34 @@ export function organizationJsonLd() {
     },
     areaServed: ["US"],
     knowsAbout: [
-      "Permanent placement recruitment",
-      "Executive search",
-      "Contract and temporary staffing",
-      "Business process outsourcing",
-      "Outsourced customer support",
-      "Corporate and legal recruitment",
-      "Architecture and engineering recruitment",
+      "Technical talent acquisition",
+      "Executive search and recruitment",
+      "Contract staffing",
+      "Permanent placements",
+      "Corporate recruitment",
+      "HR consulting",
     ],
     contactPoint: [
-      {
-        "@type": "ContactPoint",
-        contactType: "sales",
-        email: siteConfig.email,
-        availableLanguage: ["English"],
-      },
-      {
-        "@type": "ContactPoint",
-        contactType: "candidate enquiries",
-        email: siteConfig.talentEmail,
-        availableLanguage: ["English"],
-      },
+      ...(siteConfig.email
+        ? [
+            {
+              "@type": "ContactPoint",
+              contactType: "sales",
+              email: siteConfig.email,
+              availableLanguage: ["English"],
+            } as const,
+          ]
+        : []),
+      ...(siteConfig.talentEmail
+        ? [
+            {
+              "@type": "ContactPoint",
+              contactType: "candidate enquiries",
+              email: siteConfig.talentEmail,
+              availableLanguage: ["English"],
+            } as const,
+          ]
+        : []),
     ],
   };
 }
@@ -77,10 +90,10 @@ export function serviceJsonLd(
         "@type": "Service",
         name: service.name,
         description: service.description,
-        serviceType: "Engineering recruitment",
+        serviceType: "Recruitment and staffing",
         provider: { "@id": `${siteConfig.url}/#organization` },
         areaServed: siteConfig.markets,
-        url: `${siteConfig.url}/services#${service.slug}`,
+        url: `${siteConfig.url}/services/${service.slug}`,
       },
     })),
   };

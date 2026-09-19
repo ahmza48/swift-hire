@@ -115,7 +115,7 @@ section("MOBILE (375×667) — hamburger, services accordion, navigation");
     })),
   );
 
-  check("all 3 services listed", links.length === 3, `got ${links.length}`);
+  check("all 6 services listed", links.length === 6, `got ${links.length}`);
   check(
     "every service link is rendered with height",
     links.every((l) => l.visible),
@@ -155,11 +155,11 @@ section("MOBILE (375×667) — hamburger, services accordion, navigation");
   await new Promise((r) => setTimeout(r, 150));
   await Promise.all([
     page.waitForNavigation({ waitUntil: "networkidle0", timeout: 15000 }),
-    page.click('#mobile-services-panel a[href="/services/recruitment-staffing"]'),
+    page.click('#mobile-services-panel a[href="/services/technical-talent-acquisition"]'),
   ]);
   check(
     "tapping a service navigates to its page",
-    page.url().endsWith("/services/recruitment-staffing"),
+    page.url().endsWith("/services/technical-talent-acquisition"),
     page.url(),
   );
   // The sheet has a 240ms exit animation, so it is still in the DOM for a beat
@@ -180,7 +180,7 @@ section("MOBILE (375×667) — hamburger, services accordion, navigation");
   );
 
   const h1 = await page.$eval("h1", (el) => el.textContent.trim());
-  check("service page renders its H1", h1 === "Recruitment & Staffing", h1);
+  check("service page renders its H1", h1 === "Technical Talent Acquisition", h1);
 
   // The "Services" label itself must still reach the landing page.
   await page.goto(`${BASE}/`, { waitUntil: "networkidle0" });
@@ -243,7 +243,7 @@ section("DESKTOP (1440×900) — mega-menu hover, keyboard, escape");
     "#services-mega-menu ul a[href]",
     (nodes) => nodes.map((n) => n.getAttribute("href")),
   );
-  check("mega-menu lists 3 services", megaLinks.length === 3, `got ${megaLinks.length}`);
+  check("mega-menu lists 6 services", megaLinks.length === 6, `got ${megaLinks.length}`);
 
   const cols = await page.$eval("#services-mega-menu ul", (el) =>
     getComputedStyle(el).gridTemplateColumns.split(" ").length,
@@ -310,9 +310,13 @@ section("DESKTOP (1440×900) — mega-menu hover, keyboard, escape");
     `bg=${after.bg} blur=${after.blur}`,
   );
 
-  // Floating CTA appears past 300px.
-  const cta = await page.$('a[href="/contact#book"]');
-  check("floating Book a call appears after scroll", cta !== null);
+  // The persistent floating CTA was retired: the header already carries a
+  // Book Appointment button on every viewport, so a second sticky control at
+  // the bottom-right would give the mobile screen two competing appointment
+  // controls at once. What must stay true is that the header CTA is still
+  // there after scroll — verified via the top-of-page header link.
+  const headerCta = await page.$('header a[href="/contact#book"]');
+  check("header Book Appointment stays reachable", headerCta !== null);
 
   check("no console errors on desktop", errors.length === 0, errors.join(" | "));
   await page.close();

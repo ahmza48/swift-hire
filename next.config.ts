@@ -102,6 +102,31 @@ const nextConfig: NextConfig = {
       { source: "/admin/:path*", destination: "/admin/index.html" },
     ];
   },
+
+  /**
+   * Retired service routes.
+   *
+   * The catalogue moved from three broad pillars (recruitment-staffing, bpo,
+   * customer-support) to six specialist recruitment services. The old slugs
+   * still receive traffic — inbound links, search-index entries, saved
+   * bookmarks — so they redirect 308 (permanent, method-preserving) to the
+   * services overview rather than 404.
+   */
+  async redirects() {
+    return [
+      {
+        source: "/services/recruitment-staffing",
+        destination: "/services",
+        permanent: true,
+      },
+      { source: "/services/bpo", destination: "/services", permanent: true },
+      {
+        source: "/services/customer-support",
+        destination: "/services",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

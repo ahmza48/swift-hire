@@ -11,7 +11,7 @@ import { Logo } from "@/components/ui/logo";
 import { services } from "@/data/services";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/cn";
-import { primaryNav, siteConfig } from "@/lib/site";
+import { primaryNav } from "@/lib/site";
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -202,7 +202,6 @@ export function SiteHeader() {
         >
           <Link
             href="/"
-            aria-label={`${siteConfig.name} — home`}
             className="rounded-xs text-on-ink transition-colors hover:text-jade"
           >
             <Logo markClassName="text-jade" />
@@ -347,7 +346,7 @@ export function SiteHeader() {
               <div className="mb-6 flex items-baseline justify-between gap-6 border-b border-ink-line pb-3">
                 <p className="eyebrow text-jade">
                   <span aria-hidden="true" className="h-px w-7 bg-current opacity-70" />
-                  Three pillars, one partner
+                  Six recruitment services
                 </p>
                 <Link
                   href="/services"
@@ -358,20 +357,22 @@ export function SiteHeader() {
                 </Link>
               </div>
 
-              {/* Three services get three roomy cards, not a cramped list —
-                  each shows the icon, the name and a one-line tagline. */}
-              <ul className="grid grid-cols-3 gap-4">
+              {/* Six services get a 2×3 card grid at large sizes and a 3×2
+                  grid at extra-large — cards stay comfortable at both widths
+                  and the panel never dominates the viewport. Icon + name +
+                  one-line tagline per card. */}
+              <ul className="grid grid-cols-2 gap-4 xl:grid-cols-3">
                 {services.map((service) => (
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="group flex h-full items-start gap-4 rounded-md border border-ink-line/70 bg-ink-raised/40 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-on-ink/40 hover:bg-ink-raised"
+                      className="group flex h-full items-start gap-4 rounded-md border border-ink-line/70 bg-ink-raised/40 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-on-ink/40 hover:bg-ink-raised"
                     >
                       <span className="mt-0.5 inline-flex size-10 shrink-0 items-center justify-center rounded-sm bg-on-ink/5 text-on-ink transition-colors group-hover:bg-on-ink/10">
                         <ServiceIcon name={service.icon} className="size-5" />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-[1rem] font-semibold text-on-ink transition-colors group-hover:text-jade">
+                        <span className="block text-[0.9375rem] font-semibold leading-snug text-on-ink transition-colors group-hover:text-jade">
                           {service.name}
                         </span>
                         <span className="mt-1.5 block text-[0.8125rem] leading-relaxed text-on-ink-muted">

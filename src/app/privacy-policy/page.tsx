@@ -55,9 +55,13 @@ export default function PrivacyPolicyPage() {
             {siteConfig.location}. We are the data controller for the personal
             data described in this policy. You can reach our data protection
             contact at{" "}
-            <a href={`mailto:${siteConfig.privacyEmail}`}>
-              {siteConfig.privacyEmail}
-            </a>
+            {siteConfig.privacyEmail ? (
+              <a href={`mailto:${siteConfig.privacyEmail}`}>
+                {siteConfig.privacyEmail}
+              </a>
+            ) : (
+              <Link href="/contact">the Contact page</Link>
+            )}
             .
           </p>
 
@@ -201,9 +205,13 @@ export default function PrivacyPolicyPage() {
           </p>
           <p>
             To exercise any of these, email{" "}
-            <a href={`mailto:${siteConfig.privacyEmail}`}>
-              {siteConfig.privacyEmail}
-            </a>{" "}
+            {siteConfig.privacyEmail ? (
+              <a href={`mailto:${siteConfig.privacyEmail}`}>
+                {siteConfig.privacyEmail}
+              </a>
+            ) : (
+              <Link href="/contact">the Contact page</Link>
+            )}{" "}
             from the address you registered with. We respond within 30 days and
             do not charge a fee. There is no retention offer and no exit
             interview — deletion means deletion.
@@ -245,9 +253,13 @@ export default function PrivacyPolicyPage() {
           <p>
             No system is perfectly secure. If you believe you have found a
             vulnerability, please email{" "}
-            <a href={`mailto:${siteConfig.privacyEmail}`}>
-              {siteConfig.privacyEmail}
-            </a>{" "}
+            {siteConfig.privacyEmail ? (
+              <a href={`mailto:${siteConfig.privacyEmail}`}>
+                {siteConfig.privacyEmail}
+              </a>
+            ) : (
+              <Link href="/contact">the Contact page</Link>
+            )}{" "}
             and we will acknowledge within two business days.
           </p>
 
@@ -268,18 +280,26 @@ export default function PrivacyPolicyPage() {
             personal information as those terms are defined in the CCPA. We will
             not discriminate against you for exercising these rights. Send
             requests to{" "}
-            <a href={`mailto:${siteConfig.privacyEmail}`}>
-              {siteConfig.privacyEmail}
-            </a>
+            {siteConfig.privacyEmail ? (
+              <a href={`mailto:${siteConfig.privacyEmail}`}>
+                {siteConfig.privacyEmail}
+              </a>
+            ) : (
+              <Link href="/contact">the Contact page</Link>
+            )}
             .
           </p>
 
           <h2 id="contact">12. Contact and complaints</h2>
           <p>
             Questions or complaints:{" "}
-            <a href={`mailto:${siteConfig.privacyEmail}`}>
-              {siteConfig.privacyEmail}
-            </a>
+            {siteConfig.privacyEmail ? (
+              <a href={`mailto:${siteConfig.privacyEmail}`}>
+                {siteConfig.privacyEmail}
+              </a>
+            ) : (
+              <Link href="/contact">the Contact page</Link>
+            )}
             . If you are not satisfied with our response, you may complain to
             the UK Information Commissioner&apos;s Office at ico.org.uk, or to
             your local supervisory authority in the EEA.

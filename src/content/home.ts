@@ -7,32 +7,41 @@ export type Stat = {
   note: string;
 };
 
-/**
- * PLACEHOLDER METRICS — realistic early-stage figures, not audited results.
- * Replace with real numbers from the ATS before launch and remove this notice.
+/*
+ * The numeric `stats` block that previously lived here (11-day shortlist,
+ * 25% shortlist-to-hire, 94% 90-day retention) has been retired: those
+ * figures were placeholder metrics with no verified source in the codebase,
+ * and the site cannot publish precise performance numbers it cannot back up.
+ * The homepage now uses a qualitative `commitments` strip instead — every
+ * item below is a documented process commitment rather than a claimed
+ * outcome, so nothing here relies on unverified data.
+ *
+ * If audited metrics become available, add them back as a `stats` export
+ * alongside `commitments` and render them in a separate section — do not
+ * conflate the two.
  */
-export const stats: readonly Stat[] = [
+
+export type Commitment = {
+  title: string;
+  note: string;
+};
+
+export const commitments: readonly Commitment[] = [
   {
-    value: 11,
-    label: "days to first shortlist",
-    note: "Median, from signed brief to profiles in your inbox.",
+    title: "Structured screen on every role",
+    note: "Every candidate is scored against the rubric we agreed with you at kickoff. Verdict on its own is never enough.",
   },
   {
-    value: 25,
-    suffix: "%",
-    label: "of shortlisted candidates hired",
-    note: "Across per-hire and retained engagements in the last 12 months.",
+    title: "Evidence attached to every shortlist",
+    note: "Assessment output, references and reservations delivered with each candidate — so you evaluate our reasoning, not our score.",
   },
   {
-    value: 94,
-    suffix: "%",
-    label: "placements past 90 days",
-    note: "Hires still in role at the end of the guarantee window.",
+    title: "90-day replacement guarantee",
+    note: "If a placement leaves inside the first ninety days, we rerun the search at no additional fee. Written into the engagement letter.",
   },
   {
-    value: 90,
-    label: "day replacement guarantee",
-    note: "We rerun the search at no cost if a hire does not work out.",
+    title: "One team, brief to signature",
+    note: "The consultant who takes your brief runs the search through to a signed offer. No handoff to a delivery pool.",
   },
 ];
 
@@ -55,7 +64,7 @@ export const painPoints: readonly PainPoint[] = [
     cost:
       "Projects slip, the team absorbs the work, and your strongest players start looking somewhere else too.",
     answer:
-      "Median 14 days from signed brief to shortlist, because sourcing starts the day after kickoff — not the day after we finish talking about it.",
+      "Sourcing starts the day after kickoff, not the day after we finish talking about it — so shortlists arrive in weeks, not months.",
   },
   {
     problem: "Interviews are eating your leadership's week",
@@ -80,31 +89,16 @@ export type Testimonial = {
   company: string;
 };
 
-/**
- * PLACEHOLDER TESTIMONIALS — written to be representative of real feedback,
- * but not attributable to real people. Do not publish without written consent
- * from a named client; replace or delete this array before launch.
+/*
+ * The testimonials array is deliberately empty.
+ *
+ * The earlier placeholder quotes were representative of real feedback but
+ * were not attributable to real, consenting clients — publishing them would
+ * count as fabricated social proof, which the site actively guards against.
+ * The homepage checks `testimonials.length` and hides the section entirely
+ * when empty, so nothing renders until real, named, consented quotes land
+ * here.
+ *
+ * TODO: replace with real, written-consent testimonials before publishing.
  */
-export const testimonials: readonly Testimonial[] = [
-  {
-    quote:
-      "We had the role open for five months with two other agencies. Staffing Viro sent four profiles, we interviewed three, and hired the second one. The difference was that they had actually read the code the candidates wrote.",
-    name: "Placeholder name",
-    role: "VP Engineering",
-    company: "Series B fintech",
-  },
-  {
-    quote:
-      "The shortlist document included what they thought was wrong with each candidate. Nobody had ever done that before, and it made the decision take an afternoon instead of a fortnight.",
-    name: "Placeholder name",
-    role: "CTO",
-    company: "Health-tech scale-up",
-  },
-  {
-    quote:
-      "We used the embedded model to go from 6 to 19 engineers. When the term ended they handed over the templates, the pipeline and the process, and we kept running it ourselves.",
-    name: "Placeholder name",
-    role: "Head of Talent",
-    company: "B2B SaaS, Series A",
-  },
-];
+export const testimonials: readonly Testimonial[] = [];

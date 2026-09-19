@@ -94,51 +94,67 @@ export default function ContactPage() {
 
           <Reveal delay={100} className="lg:pt-4">
             <div className="flex flex-col gap-8 rounded-md border border-on-paper/15 bg-paper p-7 md:p-8">
-              <div>
-                <h3 className="eyebrow text-jade-ink">
-                  <span aria-hidden="true" className="h-px w-5 bg-current" />
-                  Direct
-                </h3>
-                <dl className="mt-4 flex flex-col gap-4 text-[0.9375rem]">
-                  <div>
-                    <dt className="text-on-paper-muted">Client enquiries</dt>
-                    <dd className="mt-1">
-                      <a
-                        href={`mailto:${siteConfig.email}`}
-                        className="rounded-xs font-mono underline underline-offset-4 transition-colors hover:text-jade-ink"
-                      >
-                        {siteConfig.email}
-                      </a>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-on-paper-muted">Engineers</dt>
-                    <dd className="mt-1">
-                      <a
-                        href={`mailto:${siteConfig.talentEmail}`}
-                        className="rounded-xs font-mono underline underline-offset-4 transition-colors hover:text-jade-ink"
-                      >
-                        {siteConfig.talentEmail}
-                      </a>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-on-paper-muted">LinkedIn</dt>
-                    <dd className="mt-1">
-                      <a
-                        href={siteConfig.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-analytics="outbound_click"
-                        className="rounded-xs font-mono underline underline-offset-4 transition-colors hover:text-jade-ink"
-                      >
-                        /company/swifthire
-                        <span className="sr-only"> (opens in a new tab)</span>
-                      </a>
-                    </dd>
-                  </div>
-                </dl>
-              </div>
+              {/*
+                Direct contact rows only render for entries the business has
+                actually supplied. Every row below is `undefined` until the
+                matching NEXT_PUBLIC_*_EMAIL / NEXT_PUBLIC_LINKEDIN_URL
+                environment variable is set — so the block gracefully
+                collapses rather than publishing a placeholder mailbox that
+                does not accept mail.
+              */}
+              {siteConfig.email || siteConfig.talentEmail || siteConfig.linkedin ? (
+                <div>
+                  <h3 className="eyebrow text-jade-ink">
+                    <span aria-hidden="true" className="h-px w-5 bg-current" />
+                    Direct
+                  </h3>
+                  <dl className="mt-4 flex flex-col gap-4 text-[0.9375rem]">
+                    {siteConfig.email ? (
+                      <div>
+                        <dt className="text-on-paper-muted">Client enquiries</dt>
+                        <dd className="mt-1">
+                          <a
+                            href={`mailto:${siteConfig.email}`}
+                            className="rounded-xs font-mono underline underline-offset-4 transition-colors hover:text-jade-ink"
+                          >
+                            {siteConfig.email}
+                          </a>
+                        </dd>
+                      </div>
+                    ) : null}
+                    {siteConfig.talentEmail ? (
+                      <div>
+                        <dt className="text-on-paper-muted">Candidates</dt>
+                        <dd className="mt-1">
+                          <a
+                            href={`mailto:${siteConfig.talentEmail}`}
+                            className="rounded-xs font-mono underline underline-offset-4 transition-colors hover:text-jade-ink"
+                          >
+                            {siteConfig.talentEmail}
+                          </a>
+                        </dd>
+                      </div>
+                    ) : null}
+                    {siteConfig.linkedin ? (
+                      <div>
+                        <dt className="text-on-paper-muted">LinkedIn</dt>
+                        <dd className="mt-1">
+                          <a
+                            href={siteConfig.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-analytics="outbound_click"
+                            className="rounded-xs font-mono underline underline-offset-4 transition-colors hover:text-jade-ink"
+                          >
+                            LinkedIn
+                            <span className="sr-only"> (opens in a new tab)</span>
+                          </a>
+                        </dd>
+                      </div>
+                    ) : null}
+                  </dl>
+                </div>
+              ) : null}
 
               <div className="border-t border-on-paper/15 pt-7">
                 <h3 className="eyebrow text-jade-ink">

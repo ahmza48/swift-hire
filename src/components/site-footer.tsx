@@ -15,7 +15,6 @@ export function SiteFooter() {
           <div className="flex flex-col gap-5">
             <Link
               href="/"
-              aria-label={`${siteConfig.name} — home`}
               className="w-fit rounded-xs transition-colors hover:text-jade"
             >
               <Logo markClassName="text-jade" />
@@ -24,17 +23,19 @@ export function SiteFooter() {
               {siteConfig.description}
             </p>
             <dl className="mt-1 flex flex-col gap-2 font-mono text-[0.8125rem] text-on-ink-muted">
-              <div className="flex gap-2">
-                <dt className="sr-only">Email</dt>
-                <dd>
-                  <a
-                    href={`mailto:${siteConfig.email}`}
-                    className="rounded-xs transition-colors hover:text-jade"
-                  >
-                    {siteConfig.email}
-                  </a>
-                </dd>
-              </div>
+              {siteConfig.email ? (
+                <div className="flex gap-2">
+                  <dt className="sr-only">Email</dt>
+                  <dd>
+                    <a
+                      href={`mailto:${siteConfig.email}`}
+                      className="rounded-xs transition-colors hover:text-jade"
+                    >
+                      {siteConfig.email}
+                    </a>
+                  </dd>
+                </div>
+              ) : null}
               <div className="flex gap-2">
                 <dt className="sr-only">Location</dt>
                 <dd>{siteConfig.location}</dd>
@@ -119,22 +120,31 @@ export function SiteFooter() {
           </p>
 
           <div className="flex items-center gap-5">
-            <a
-              href={siteConfig.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-analytics="outbound_click"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-xs text-[0.9375rem] text-on-ink/80 transition-colors hover:text-jade"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" className="size-[18px]">
-                <path
-                  fill="currentColor"
-                  d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.75-1.95C21.6 8.75 22 11 22 14.1V21h-4v-6.1c0-1.5-.03-3.4-2.1-3.4-2.1 0-2.4 1.6-2.4 3.3V21h-4V9Z"
-                />
-              </svg>
-              LinkedIn
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
+            {/*
+              LinkedIn only renders when the URL has actually been configured
+              via NEXT_PUBLIC_LINKEDIN_URL. Rendering an `<a>` with no `href`
+              produces an inert element that html-validate correctly flags
+              (`target`/`rel` require `href`), so the whole row collapses
+              until the business supplies a real URL.
+            */}
+            {siteConfig.linkedin ? (
+              <a
+                href={siteConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-analytics="outbound_click"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xs text-[0.9375rem] text-on-ink/80 transition-colors hover:text-jade"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="size-[18px]">
+                  <path
+                    fill="currentColor"
+                    d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.75-1.95C21.6 8.75 22 11 22 14.1V21h-4v-6.1c0-1.5-.03-3.4-2.1-3.4-2.1 0-2.4 1.6-2.4 3.3V21h-4V9Z"
+                  />
+                </svg>
+                LinkedIn
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            ) : null}
 
             <Link
               href="/contact#book"

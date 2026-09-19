@@ -6,9 +6,9 @@
 export const siteConfig = {
   name: "Staffing Viro",
   legalName: "Staffing Viro LLC",
-  tagline: "Recruitment, BPO and customer support — run as your own team.",
+  tagline: "Recruitment solutions built around how you hire.",
   description:
-    "Staffing Viro is a specialist staffing agency: recruitment and staffing (permanent, executive and contract), business process outsourcing, and outsourced customer support — each with a named team and documented process.",
+    "Staffing Viro is a specialist recruitment and staffing partner: technical talent acquisition, executive search, contract staffing, permanent placements, corporate recruitment and HR consulting — each with a named team and a documented process.",
   /**
    * Canonical origin.
    *
@@ -17,11 +17,22 @@ export const siteConfig = {
    * fallback in the browser — the two would disagree during hydration. The
    * site's own URL is not a secret, so exposing it costs nothing.
    */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://swifthire.com",
-  email: "hello@swifthire.com",
-  talentEmail: "careers@swifthire.com",
-  privacyEmail: "privacy@swifthire.com",
-  phoneDisplay: "+1 (505) 555-0142",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.staffingviro.com",
+  /*
+   * TODO: Contact addresses.
+   *
+   * The site's live production addresses are the fields below. When the
+   * business supplies the official Staffing Viro mailboxes, set them via the
+   * matching NEXT_PUBLIC_*_EMAIL environment variables so this fallback set
+   * is never used in production. Displaying an @staffingviro.com address that
+   * does not accept mail would be worse than displaying no address at all —
+   * every place that reads `siteConfig.email` guards on `undefined` and
+   * either hides the row or points the reader at the contact form instead.
+   */
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
+  talentEmail: process.env.NEXT_PUBLIC_CAREERS_EMAIL,
+  privacyEmail: process.env.NEXT_PUBLIC_PRIVACY_EMAIL,
+  phoneDisplay: process.env.NEXT_PUBLIC_CONTACT_PHONE,
   /**
    * Registered US business address.
    *
@@ -39,9 +50,14 @@ export const siteConfig = {
   location: "Albuquerque, NM",
   timezone: "MST / MDT — overlapping CST, EST and PST business hours",
   markets: "United States, with remote-first placements nationwide",
-  linkedin: "https://www.linkedin.com/company/staffingviro",
+  /*
+   * TODO: replace with Staffing Viro's LinkedIn company URL once available.
+   * Guarded so the footer social row hides the entry rather than linking to
+   * a placeholder that does not resolve.
+   */
+  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL,
   /** Fallback Calendly link when NEXT_PUBLIC_CALENDLY_URL is unset. */
-  calendly: "https://calendly.com/staffingviro/discovery-call",
+  calendly: process.env.NEXT_PUBLIC_CALENDLY_URL,
   responseCommitment: "We reply to every enquiry within one business day.",
   guaranteeDays: 90,
   /** Footer credit — the agency that built this site, not Staffing Viro itself. */
@@ -61,18 +77,18 @@ export type NavItem = {
 
 /** Primary header navigation.
  *
- * Order matters — this is the visible order in the header on desktop and in the
- * mobile drawer. "Book Appointment" is the primary CTA button (not a link),
- * so it isn't in this array; it is rendered separately by the header component
- * and always sits at the far right.
+ * Order matters — this is the visible order in the header on desktop and the
+ * mobile drawer. "Book Appointment" is rendered separately as the primary
+ * CTA button and always sits at the far right of the header. Home is not
+ * an item because the logo already navigates there; adding it back would
+ * make the row read as one item too long on a narrow desktop.
  */
 export const primaryNav: readonly NavItem[] = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services", hasMegaMenu: true },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/how-it-works", label: "How It Works" },
   { href: "/careers", label: "Careers" },
+  { href: "/contact", label: "Contact Us" },
 ] as const;
 
 /**
@@ -83,29 +99,19 @@ export const primaryNav: readonly NavItem[] = [
  */
 export const footerNav: readonly { title: string; items: readonly NavItem[] }[] = [
   {
-    title: "Clients",
-    items: [
-      { href: "/how-it-works", label: "How it works" },
-      { href: "/case-studies", label: "Case studies" },
-      { href: "/contact", label: "Contact us" },
-      { href: "/contact#book", label: "Schedule appointment" },
-    ],
-  },
-  {
-    title: "Candidates",
-    items: [
-      { href: "/careers", label: "Careers" },
-      { href: "/careers#roles", label: "Open roles" },
-      { href: "/careers#talent-pool", label: "Join the talent pool" },
-    ],
-  },
-  {
     title: "Company",
     items: [
       { href: "/about", label: "About" },
-      { href: "/contact", label: "Contact" },
-      { href: "/privacy-policy", label: "Privacy policy" },
-      { href: "/terms-of-service", label: "Terms of service" },
+      { href: "/how-it-works", label: "How It Works" },
+      { href: "/careers", label: "Careers" },
+      { href: "/contact", label: "Contact Us" },
+    ],
+  },
+  {
+    title: "Legal",
+    items: [
+      { href: "/privacy-policy", label: "Privacy Policy" },
+      { href: "/terms-of-service", label: "Terms of Service" },
     ],
   },
 ] as const;

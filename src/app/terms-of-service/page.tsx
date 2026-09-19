@@ -241,7 +241,12 @@ export default function TermsOfServicePage() {
           </p>
           <p>
             Questions:{" "}
-            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+            {siteConfig.email ? (
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            ) : (
+              <Link href="/contact">reach us through the Contact page</Link>
+            )}
+            .
           </p>
         </LegalDocument>
       </div>

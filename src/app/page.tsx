@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ServiceIcon } from "@/components/icons/service-icon";
-import { CountUp } from "@/components/motion/count-up";
 import {
   AmbientGlow,
   HeroItem,
@@ -11,11 +10,10 @@ import {
 } from "@/components/motion/hero-stagger";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
-import { Pipeline } from "@/components/pipeline";
 import { ArrowRight, ButtonLink } from "@/components/ui/button";
 import { IconTile } from "@/components/ui/icon-tile";
 import { Eyebrow, Section, SectionHeading } from "@/components/ui/section";
-import { painPoints, stats, testimonials } from "@/content/home";
+import { commitments, painPoints, testimonials } from "@/content/home";
 import { processSteps } from "@/content/process";
 import { services } from "@/data/services";
 import { siteConfig } from "@/lib/site";
@@ -41,15 +39,15 @@ export default function HomePage() {
           <HeroStagger className="max-w-4xl">
             <HeroItem>
               <Eyebrow tone="ink">
-                Outsourced business services, run as your own team
+                Recruitment solutions built around how you hire
               </Eyebrow>
             </HeroItem>
 
             <HeroItem>
               <h1 className="mt-7 text-[length:var(--text-display)] leading-[0.88] font-bold">
-                We run the work.
+                We run the search.
                 <span className="relative mt-1 block w-fit text-jade">
-                  You run the business.
+                  You make the hire.
                   {/* Rule wipes out from under the accent line once the hero
                       has settled — the last beat of the entrance sequence. */}
                   <HeroUnderline />
@@ -59,69 +57,52 @@ export default function HomePage() {
 
             <HeroItem>
               <p className="mt-8 max-w-2xl text-[length:var(--text-lead)] leading-relaxed text-on-ink-muted">
-                {siteConfig.name} is a specialist staffing agency across three
-                pillars — recruitment &amp; staffing, business process
-                outsourcing and outsourced customer support. Each is run by a
-                named team with a documented process and reporting you can hold
-                us to.
+                {siteConfig.name} is a specialist recruitment and staffing
+                partner across six services — technical talent, executive
+                search, contract staffing, permanent placements, corporate
+                recruitment and HR consulting. Each is run by a named team
+                with a documented process.
               </p>
             </HeroItem>
 
             <HeroItem>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <ButtonLink
-                  href="/contact#book"
+                  href="/services"
                   size="lg"
-                  data-analytics="cta_schedule_appointment"
+                  data-analytics="cta_explore_services"
                 >
-                  Book Appointment
+                  Explore Services
                   <ArrowRight />
                 </ButtonLink>
-                <ButtonLink href="/services" variant="onInk" size="lg">
-                  Explore services
+                <ButtonLink href="/how-it-works" variant="onInk" size="lg">
+                  How It Works
                 </ButtonLink>
               </div>
             </HeroItem>
           </HeroStagger>
-
-          {/* The funnel is the thesis: a wide pool cut down to one hire. */}
-          <Reveal delay={120} className="mt-20 md:mt-24">
-            <div className="mb-8 flex flex-col gap-2 border-t border-ink-line pt-8 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="text-[length:var(--text-h3)] font-bold">
-                What 240 candidates look like by the time they reach you
-              </h2>
-              <p className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-on-ink-muted">
-                Select a stage
-              </p>
-            </div>
-            <Pipeline />
-          </Reveal>
         </div>
 
-        {/* Trust strip */}
+        {/* Commitments strip — qualitative pillars in place of the previous
+            numeric count-ups, which relied on metrics we could not verify. */}
         <div className="border-t border-ink-line">
           <div className="container-page">
-            <dl className="grid grid-cols-2 divide-ink-line md:grid-cols-4 md:divide-x">
-              {stats.map((stat, index) => (
+            <dl className="grid grid-cols-1 divide-ink-line sm:grid-cols-2 lg:grid-cols-4 lg:divide-x">
+              {commitments.map((item, index) => (
                 <Reveal
-                  key={stat.label}
+                  key={item.title}
                   delay={index * 70}
-                  className="border-b border-ink-line px-1 py-7 md:border-b-0 md:px-7 md:first:pl-0 md:last:pr-0"
+                  className="border-b border-ink-line px-1 py-7 last:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:px-7 lg:first:pl-0 lg:last:pr-0"
                 >
-                  <dt className="sr-only">{stat.label}</dt>
+                  <dt className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-jade">
+                    0{index + 1}
+                  </dt>
                   <dd>
-                    <span className="block font-display text-4xl font-bold tracking-tight text-jade tabular-nums drop-shadow-[0_0_18px_rgba(255,255,255,0.20)] md:text-5xl">
-                      <CountUp
-                        value={stat.value}
-                        {...(stat.prefix ? { prefix: stat.prefix } : {})}
-                        {...(stat.suffix ? { suffix: stat.suffix } : {})}
-                      />
+                    <span className="mt-3 block text-[1rem] font-semibold text-on-ink md:text-[1.0625rem]">
+                      {item.title}
                     </span>
-                    <span className="mt-2 block font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-on-ink">
-                      {stat.label}
-                    </span>
-                    <span className="mt-2 block max-w-[26ch] text-[0.8125rem] leading-relaxed text-on-ink-muted">
-                      {stat.note}
+                    <span className="mt-2 block max-w-[34ch] text-[0.8125rem] leading-relaxed text-on-ink-muted">
+                      {item.note}
                     </span>
                   </dd>
                 </Reveal>
@@ -182,18 +163,21 @@ export default function HomePage() {
             id="process-heading"
             index={2}
             eyebrow="The engagement"
-            title="Four steps, and you only appear in two of them"
-            lead="The process is published because it is the thing you are buying. Nothing here is a black box."
+            title="Five steps, and you only appear in two of them"
+            lead="The recruitment process is published because it is the thing you are buying. Nothing here is a black box."
           />
         </Reveal>
 
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-md bg-on-paper/12 sm:grid-cols-2 lg:grid-cols-4">
-          {processSteps.slice(0, 4).map((step, index) => (
+        {/* Five steps stack cleanly at two, three and five columns across the
+            small/medium/large breakpoints — the cramped four-column-on-mobile
+            layout of the previous four-step version is gone. */}
+        <ol className="mt-14 grid gap-px overflow-hidden rounded-md bg-on-paper/12 sm:grid-cols-2 lg:grid-cols-5">
+          {processSteps.map((step, index) => (
             <Reveal
               key={step.title}
               as="li"
               delay={index * 70}
-              className="bg-paper-sunken p-7"
+              className="bg-paper-sunken p-6 md:p-7"
             >
               <span className="font-mono text-xs tabular-nums text-jade-ink">
                 {String(index + 1).padStart(2, "0")}
@@ -216,7 +200,7 @@ export default function HomePage() {
             href="/how-it-works"
             className="mt-10 inline-flex min-h-[44px] items-center gap-2.5 rounded-xs font-medium text-jade-ink underline-offset-8 transition-all hover:underline"
           >
-            See all four steps, with timings
+            See all five steps, with detail
             <ArrowRight />
           </Link>
         </Reveal>
@@ -224,11 +208,9 @@ export default function HomePage() {
 
       {/*
         Services — deliberately the one dark band in the middle of the page.
-        Three light bands ran consecutively before this, which flattened the
-        whole middle of the document; inverting the section the site is
-        actually selling gives the scroll a rhythm and makes this the thing
-        you remember. Three columns, not five: ten tiny tiles read as a
-        footer, not a offering.
+        Six recruitment services stack as 1 / 2 / 3 columns across small,
+        medium and large screens so every card gets enough width to read
+        without the row dropping to fewer items on desktop.
       */}
       <Section tone="ink" size="lg" ariaLabelledBy="services-heading">
         <Reveal>
@@ -237,15 +219,15 @@ export default function HomePage() {
             index={3}
             tone="ink"
             eyebrow="Services"
-            title="Three pillars, one partner"
-            lead="Each is a standalone engagement with its own team and process. Most clients start with one and add a second within a year."
+            title="Six recruitment services, one partner"
+            lead="Each is a standalone engagement with its own team and process. Most clients start with one service and expand into a second inside a year."
           />
         </Reveal>
 
         <Stagger
           as="ul"
           stagger={0.06}
-          className="mt-14 grid gap-5 md:grid-cols-3"
+          className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {services.map((service) => (
             <StaggerItem as="li" key={service.slug} className="h-full">
@@ -275,71 +257,51 @@ export default function HomePage() {
         </Stagger>
       </Section>
 
-      {/* Domain expertise — narrows the recruitment pitch to specifics without
-          re-listing every discipline. The tech marquee below carries the
-          long-tail vocabulary; this heading only positions it. */}
-      <Section tone="paper" size="lg" ariaLabelledBy="expertise-heading">
-        <Reveal className="max-w-3xl">
-          <SectionHeading
-            id="expertise-heading"
-            index={4}
-            eyebrow="Domains we recruit for"
-            title="From engineering rooms to boardrooms"
-            lead="Technical talent, legal and corporate counsel, architecture and real estate, civil and MEP engineering — plus executive search across sales, finance and operations. The catalogue is in Recruitment &amp; Staffing."
-          />
-          <ButtonLink href="/services/recruitment-staffing" variant="secondary" size="lg" className="mt-9">
-            See every discipline we cover
-            <ArrowRight />
-          </ButtonLink>
-        </Reveal>
-      </Section>
+      {/*
+        Testimonials render only if real, named, consented quotes are in
+        content/home.ts. The placeholder array is empty on purpose — we do
+        not publish fabricated social proof, so nothing appears until the
+        business supplies quotes with written consent.
+      */}
+      {testimonials.length > 0 ? (
+        <Section tone="sunken" size="lg" ariaLabelledBy="proof-heading">
+          <Reveal>
+            <SectionHeading
+              id="proof-heading"
+              index={4}
+              eyebrow="What clients say"
+              title="Feedback from engagements"
+            />
+          </Reveal>
 
-      {/* -------------------------------------------------------- Social proof */}
-      <Section tone="sunken" size="lg" ariaLabelledBy="proof-heading">
-        <Reveal>
-          <SectionHeading
-            id="proof-heading"
-            index={5}
-            eyebrow="What clients say"
-            title="Feedback from engagements"
-          />
-        </Reveal>
-
-        <Stagger as="ul" className="mt-14 grid gap-6 lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <StaggerItem as="li" key={testimonial.quote} className="h-full">
-              <SpotlightCard className="p-8">
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 32 24"
-                  className="size-8 text-jade-strong/30"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M13.6 0 8 12.2v11.4H0V10.8L5.4 0h8.2Zm18.4 0-5.6 12.2v11.4h-8V10.8L24 0h8Z"
-                  />
-                </svg>
-                <blockquote className="mt-4 flex-1 text-[1.0625rem] leading-relaxed">
-                  <p>{testimonial.quote}</p>
-                </blockquote>
-                <footer className="mt-7 border-t border-on-paper/12 pt-5">
-                  <p className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-on-paper-muted">
-                    {testimonial.role} · {testimonial.company}
-                  </p>
-                </footer>
-              </SpotlightCard>
-            </StaggerItem>
-          ))}
-        </Stagger>
-
-        <Reveal delay={120}>
-          <p className="mt-8 max-w-3xl rounded-sm border border-on-paper/15 bg-paper-sunken px-5 py-4 font-mono text-[0.75rem] leading-relaxed text-on-paper-muted">
-            Note for launch: these quotes are illustrative placeholders. Replace
-            them with named, written-consent testimonials, or remove the section
-            entirely — do not publish unattributed praise as if it were real.
-          </p>
-        </Reveal>
-      </Section>
+          <Stagger as="ul" className="mt-14 grid gap-6 lg:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <StaggerItem as="li" key={testimonial.quote} className="h-full">
+                <SpotlightCard className="p-8">
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 32 24"
+                    className="size-8 text-jade-strong/30"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M13.6 0 8 12.2v11.4H0V10.8L5.4 0h8.2Zm18.4 0-5.6 12.2v11.4h-8V10.8L24 0h8Z"
+                    />
+                  </svg>
+                  <blockquote className="mt-4 flex-1 text-[1.0625rem] leading-relaxed">
+                    <p>{testimonial.quote}</p>
+                  </blockquote>
+                  <footer className="mt-7 border-t border-on-paper/12 pt-5">
+                    <p className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-on-paper-muted">
+                      {testimonial.role} · {testimonial.company}
+                    </p>
+                  </footer>
+                </SpotlightCard>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Section>
+      ) : null}
 
       {/* ----------------------------------------------------------- Final CTA */}
       <Section tone="ink" size="lg" ariaLabelledBy="cta-heading">
@@ -364,7 +326,7 @@ export default function HomePage() {
             href="/contact#book"
             size="lg"
             className="w-full shrink-0 sm:w-auto"
-            data-analytics="cta_schedule_appointment"
+            data-analytics="cta_book_appointment"
           >
             Book Appointment
             <ArrowRight />

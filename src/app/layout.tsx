@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter_Tight, JetBrains_Mono, Poppins } from "next/font/google";
 
 import { CookieConsent } from "@/components/cookie-consent";
-import { FloatingCta } from "@/components/floating-cta";
 import { JsonLd } from "@/components/json-ld";
 import { PageTransition } from "@/components/motion/page-transition";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
@@ -162,7 +161,14 @@ export default function RootLayout({
         </main>
 
         <SiteFooter />
-        <FloatingCta />
+        {/*
+          The previous persistent floating "Book Appointment" button was
+          removed here — the site header already carries the same CTA at the
+          top-right on every viewport, so a second identical fixed control at
+          the bottom-right of the mobile screen created two competing
+          appointment surfaces at once. If the sticky action is reintroduced,
+          hide it whenever the header CTA is visible or on the Contact page.
+        */}
         <CookieConsent />
       </body>
     </html>

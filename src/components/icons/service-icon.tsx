@@ -6,35 +6,59 @@ import { cn } from "@/lib/cn";
  * 1.5 weight and round joins. Mixing line art with solid glyphs is the fastest
  * way to make a card grid look assembled rather than designed.
  *
- * Only three glyphs — one per service pillar. Icons for the previous ten-service
- * catalogue were removed when the catalogue narrowed to three; they can be
- * added back on demand from git history if a fourth service is ever added.
+ * One glyph per recruitment service. If a seventh service is added, add its
+ * icon here and update the `ServiceIcon` union in `data/services.ts`.
  */
 const paths: Record<ServiceIconName, React.ReactNode> = {
-  // Person with a check — a vetted candidate.
-  recruitment: (
+  // Angle brackets over a rising line — code and shipping.
+  technical: (
+    <>
+      <path d="m8 8-4 4 4 4" />
+      <path d="m16 8 4 4-4 4" />
+      <path d="M13.5 5.5 10.5 18.5" />
+    </>
+  ),
+  // Person in profile with a small badge — leadership appointment.
+  executive: (
+    <>
+      <circle cx="9" cy="8" r="3.25" />
+      <path d="M3 20.5a6 6 0 0 1 12 0" />
+      <path d="M17 6.5v3" />
+      <path d="M17 6.5l2.5-2 2.5 2v3l-2.5 2-2.5-2v-3Z" />
+    </>
+  ),
+  // Clock face with hand — time-bound engagement.
+  contract: (
+    <>
+      <circle cx="12" cy="12.5" r="8" />
+      <path d="M12 8.5v4l2.5 1.5" />
+      <path d="M8 3.5h8" />
+    </>
+  ),
+  // Person with a check — confirmed permanent placement.
+  permanent: (
     <>
       <circle cx="9" cy="7.5" r="3.25" />
       <path d="M3 20.5a6 6 0 0 1 10.2-4.3" />
       <path d="m14.5 18.5 2 2 4-4.5" />
     </>
   ),
-  // Filing trays — back office / BPO.
-  backoffice: (
+  // Building with columns — corporate.
+  corporate: (
     <>
-      <path d="M3 13.5h4l1.5 2.5h7l1.5-2.5h4" />
-      <path d="M3 13.5v5a1.5 1.5 0 0 0 1.5 1.5h15a1.5 1.5 0 0 0 1.5-1.5v-5" />
-      <path d="M6 9.5h12" />
-      <path d="M8 5.5h8" />
+      <path d="M3.5 20.5V10L12 4.5 20.5 10v10.5" />
+      <path d="M3 20.5h18" />
+      <path d="M8 20.5v-6" />
+      <path d="M12 20.5v-6" />
+      <path d="M16 20.5v-6" />
     </>
   ),
-  // Headset — support.
-  support: (
+  // Speech + gear — advisory / consulting.
+  consulting: (
     <>
-      <path d="M4 13.5v-1.5a8 8 0 0 1 16 0v1.5" />
-      <rect x="2.75" y="13" width="4" height="6" rx="1.6" />
-      <rect x="17.25" y="13" width="4" height="6" rx="1.6" />
-      <path d="M19.25 19v.5a2.5 2.5 0 0 1-2.5 2.5H13" />
+      <path d="M4 5.5h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3.5V15.5H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z" />
+      <circle cx="15" cy="6.5" r="1.75" />
+      <path d="M15 2.75v1.75M15 8.5v1.75M18.35 4.15l-1.24 1.24M12.9 7.6l-1.24 1.24M18.75 6.5H17M13 6.5h-1.75M18.35 8.85 17.1 7.61M12.9 5.4 11.66 4.16" />
     </>
   ),
 };

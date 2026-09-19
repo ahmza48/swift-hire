@@ -49,31 +49,33 @@ const CULTURE = [
   {
     title: "Learning budget you actually spend",
     body:
-      "£1,500 per person per year, no sign-off drama, no 'talk to your manager first' loop. Books, courses, conferences, professional-body membership — whatever moves the craft.",
+      "A dedicated per-person annual learning budget with no sign-off drama and no 'talk to your manager first' loop. Books, courses, conferences and professional certification — whatever moves the craft.",
   },
 ] as const;
 
 /**
- * The three internal-team functions we recruit into. We do not publish
- * individual role postings on the marketing site — those live on the ATS and
- * are linked from Contact — but a candidate can read this and know whether
- * their skill set fits before they enquire.
+ * The internal-team functions we recruit into. We do not publish individual
+ * role postings on the marketing site — vacancies move too quickly — but a
+ * candidate can read this and know whether their skill set fits before they
+ * reach out. Retired teams (BPO delivery, customer support leadership) are
+ * gone because the service pillars they supported are no longer part of the
+ * business.
  */
 const INTERNAL_TEAMS = [
   {
-    title: "Recruitment desks",
+    title: "Technical recruitment",
     body:
-      "Delivery recruiters and consultants across engineering, legal, real-estate, MEP and executive search. You run your own desk end-to-end: source, screen, shortlist, close.",
+      "Consultants and delivery recruiters running the software engineering, DevOps, platform, data, AI/ML and QA searches. You own your desk end-to-end — source, screen, assess, shortlist and close.",
   },
   {
-    title: "BPO delivery",
+    title: "Executive & corporate recruitment",
     body:
-      "Team leads, operations analysts and finance-trained processors running the outsourced back-office and F&A engagements. Named clients, measured SLAs, quarterly improvement targets.",
+      "Retained search consultants and corporate desks running the senior and cross-functional searches — director, VP and C-suite as well as finance, sales, legal and operations.",
   },
   {
-    title: "Customer support leadership",
+    title: "Contract staffing & operations",
     body:
-      "Support team leads, QA analysts and workforce managers running the outsourced-support engagements. Tooling agnostic (Zendesk, Intercom, Freshdesk), CSAT and SLA driven.",
+      "Client-facing account managers and compliance/onboarding specialists running the contract book — day-rate placements, IR35 handling, timesheet operations and interim searches.",
   },
 ] as const;
 
@@ -81,21 +83,20 @@ const INTERNAL_TEAMS = [
  * External talent pool — the disciplines we place ON BEHALF of client
  * companies. Someone reading this is looking for a job at one of our
  * clients, not at Staffing Viro. Kept separate from the internal-team
- * section above so the two do not get confused.
+ * section above so the two are not conflated. The list mirrors the six
+ * public service pillars.
  */
 const TALENT_POOL_DISCIPLINES = [
   "Software Engineering",
   "DevOps & Platform",
-  "Data & Machine Learning",
-  "QA & Quality Engineering",
-  "Corporate & Legal Counsel",
-  "Architecture & Design",
-  "Real Estate & Property",
-  "Civil & Structural Engineering",
-  "Mechanical / MEP Engineering",
-  "Electrical Engineering",
-  "Executive — Sales, Finance, Operations",
-  "Technology Leadership",
+  "Data, AI & Machine Learning",
+  "QA, Security & Reliability",
+  "Executive — Sales, Finance, Operations, Technology",
+  "Finance & Accounting",
+  "Sales, Marketing & Revenue",
+  "Legal, Compliance & Risk",
+  "Operations & Administration",
+  "Human Resources & People Ops",
 ] as const;
 
 const HIRING_STEPS = [
@@ -174,7 +175,7 @@ export default function CareersPage() {
             tone="ink"
             eyebrow="Work at Staffing Viro"
             title="Three teams we hire into"
-            lead="We do not publish individual role postings on the marketing site — vacancies move too quickly. Instead: read the team descriptions below, then send us a note if any of them match."
+            lead="We do not publish individual role postings on the marketing site — vacancies move too quickly. Read the team descriptions below, then send us a note through Contact if any of them match."
           />
         </Reveal>
 
@@ -192,7 +193,7 @@ export default function CareersPage() {
         </Stagger>
 
         <Reveal delay={120} className="mt-12 flex flex-wrap gap-3">
-          <ButtonLink href={`mailto:${siteConfig.talentEmail}`} size="lg">
+          <ButtonLink href="/contact" size="lg">
             Send us your CV
             <ArrowRight />
           </ButtonLink>
@@ -266,23 +267,25 @@ export default function CareersPage() {
 
             <div className="border-t border-on-paper/15 pt-8">
               <p className="text-[length:var(--text-lead)] leading-relaxed">
-                Send your CV to{" "}
+                Send your CV and a two-line note on what you are looking for
+                next through the{" "}
                 <Link
-                  href={`mailto:${siteConfig.talentEmail}`}
+                  href="/contact"
                   className="font-medium text-jade-ink underline-offset-4 hover:underline"
                 >
-                  {siteConfig.talentEmail}
-                </Link>{" "}
-                with a two-line note on what you are looking for next.
+                  contact form
+                </Link>
+                . A recruiter reads every submission personally.
               </p>
               <p className="mt-4 leading-relaxed text-on-paper-muted">
-                Free for candidates, always. We are paid by the hiring company,
-                not by you, so if we ever ask you for money — that is not us.
+                Free for candidates, always. We are paid by the hiring
+                company, not by you — so if we ever ask you for money, that
+                is not us.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
-                <ButtonLink href={`mailto:${siteConfig.talentEmail}`} size="lg">
-                  Email your CV
+                <ButtonLink href="/contact" size="lg">
+                  Send us your CV
                   <ArrowRight />
                 </ButtonLink>
                 <ButtonLink href="/contact" variant="secondary" size="lg">

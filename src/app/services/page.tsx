@@ -15,7 +15,7 @@ import { serviceJsonLd } from "@/lib/structured-data";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Three service pillars from Staffing Viro: recruitment & staffing (permanent, executive and contract), BPO (business process outsourcing across back-office, finance, HR and data), and outsourced customer support. Each with a named team and documented process.",
+    "Six recruitment services from Staffing Viro: technical talent acquisition, executive search, contract staffing, permanent placements, corporate recruitment and HR consulting — each with a named team and a documented process.",
   alternates: { canonical: "/services" },
 };
 
@@ -24,30 +24,25 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Three pillars. One partner."
-        lead="Each is run by a dedicated team with its own process, quality standard and reporting. Take one, or combine them — most clients start with recruitment and add a second pillar within a year."
+        title="Recruitment solutions built around how you hire"
+        lead="Staffing Viro helps companies source, evaluate and secure talent through permanent, contract, executive, corporate and technical recruitment. Six specialist services, each run by a named team with a documented process."
         crumbs={[{ name: "Services", href: "/services" }]}
-      >
-        <ButtonLink href="/contact#book" size="lg">
-          Book Appointment
-          <ArrowRight />
-        </ButtonLink>
-      </PageHero>
+      />
 
       <Section tone="paper" size="lg" ariaLabelledBy="all-services-heading">
         <Reveal>
           <SectionHeading
             id="all-services-heading"
             eyebrow="What we do"
-            title="Pick the work you want off your plate"
-            lead="Every engagement starts the same way: we look at how the work runs today before quoting to run it ourselves."
+            title="Six services, one recruitment partner"
+            lead="Every engagement starts the same way — a kickoff to codify the role and agree the rubric — before any candidate reaches your inbox."
           />
         </Reveal>
 
         <Stagger
           as="ul"
-          stagger={0.08}
-          className="mt-14 grid gap-6 md:grid-cols-3"
+          stagger={0.06}
+          className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {services.map((service) => (
             <StaggerItem as="li" key={service.slug} className="h-full">
@@ -85,9 +80,10 @@ export default function ServicesPage() {
               Not sure which of these you actually need?
             </h2>
             <p className="mt-5 text-[length:var(--text-lead)] leading-relaxed text-on-ink-muted">
-              Most people arrive asking for one service and leave having scoped a
-              different one. Tell us what is not working and we will say which of
-              these fixes it — including when the answer is none of them.
+              Most people arrive asking for one service and leave having scoped
+              a different one. Tell us what is not working and we will say
+              which of these fixes it — including when the answer is none of
+              them.
             </p>
           </div>
 
